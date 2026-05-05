@@ -212,3 +212,37 @@ export function SparkleIcon({ className = 'w-4 h-4' }) {
     </svg>
   )
 }
+
+export function StarOutlineIcon({ className = 'w-4 h-4' }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="m12 3.5 2.6 5.2 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.6 1-5.8-4.2-4.1 5.8-.8z" />
+    </svg>
+  )
+}
+
+export function DotsVerticalIcon({ className = 'w-4 h-4' }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="5" r="1.8" />
+      <circle cx="12" cy="12" r="1.8" />
+      <circle cx="12" cy="19" r="1.8" />
+    </svg>
+  )
+}

@@ -31,6 +31,16 @@ const projects = [
     ],
     tech: ['SQL', 'ER Modeling', 'Normalization', 'Triggers and Views'],
   },
+  {
+    title: 'AI Maze Game (Main.py)',
+    description: [
+      'Interactive maze game built with Python Turtle, including keyboard movement, timer logic, and multiple difficulty levels',
+      'A* pathfinding algorithm integrated for solution generation, hints, and optional full-path visualization',
+      'Player performance metrics tracked and exported with pandas into CSV files for post-game analysis',
+      'Source file located at c:\\Users\\user\\Desktop\\Sem 2\\LAS205\\Main.py',
+    ],
+    tech: ['Python', 'Turtle', 'A* Pathfinding', 'Pandas', 'CSV Analytics'],
+  },
 ]
 
 export default function Projects() {
