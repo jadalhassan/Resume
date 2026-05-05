@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jadalhassan.github.io/portfolio/sitemap.xml
+Sitemap: https://jadalhassan.github.io/Resume/sitemap.xml
