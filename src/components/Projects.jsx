@@ -91,10 +91,20 @@ export default function Projects() {
               )}
               <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-violet-300 transition-colors duration-300 sm:pr-24">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-violet-300 transition-colors duration-300 sm:pr-24 break-words">
                     {project.title}
                   </h3>
                   <p className="text-slate-400 text-sm sm:text-base">{project.context}</p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2.5 py-1 text-xs font-mono text-violet-300 bg-violet-500/10 border border-violet-500/20 rounded-md"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <span className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-slate-300 text-xs sm:text-sm font-mono">
                   {project.period}
@@ -110,17 +120,7 @@ export default function Projects() {
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-2 pt-5 border-t border-white/5 mb-5">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2.5 py-1 text-xs font-mono text-violet-400 bg-violet-500/10 border border-violet-500/20 rounded-md"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 pt-5 border-t border-white/5">
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}

@@ -43,3 +43,20 @@ body {
     transition: none;
   }
 }
+
+@media (max-width: 360px) {
+  section {
+    scroll-margin-top: 5.5rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  span,
+  a,
+  button {
+    overflow-wrap: anywhere;
+  }
+}

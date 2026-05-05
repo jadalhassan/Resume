@@ -1,6 +1,30 @@
+import { useState } from 'react'
 import { ArrowRightIcon, GithubMarkIcon, LinkedinMarkIcon, MailLineIcon, PhoneLineIcon } from './Icons'
 
 export default function Hero() {
+  const [emailCopied, setEmailCopied] = useState(false)
+  const [phoneCopied, setPhoneCopied] = useState(false)
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('jadalhassan.ja034@gmail.com')
+      setEmailCopied(true)
+      window.setTimeout(() => setEmailCopied(false), 1800)
+    } catch {
+      setEmailCopied(false)
+    }
+  }
+
+  const copyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText('+96181665911')
+      setPhoneCopied(true)
+      window.setTimeout(() => setPhoneCopied(false), 1800)
+    } catch {
+      setPhoneCopied(false)
+    }
+  }
+
   return (
     <section className="relative min-h-[100svh] flex items-center overflow-hidden">
       <div className="absolute top-1/4 -right-32 w-[600px] h-[600px] bg-violet-600/15 rounded-full blur-[120px] pointer-events-none" />
@@ -48,7 +72,7 @@ export default function Hero() {
         <div
           data-reveal
           style={{ '--reveal-delay': '340ms' }}
-          className="mt-8 flex items-center justify-center flex-wrap gap-x-5 gap-y-3 text-slate-500 text-sm"
+          className="mt-8 flex items-center justify-center flex-wrap gap-x-4 sm:gap-x-5 gap-y-3 text-slate-500 text-xs sm:text-sm max-w-full"
         >
           <a
             href="https://github.com/jadalhassan"
@@ -78,10 +102,30 @@ export default function Hero() {
             <MailLineIcon className="w-[15px] h-[15px]" />
             Email
           </a>
-          <a href="tel:+96181665911" aria-label="Call +961 81 665 911" className="inline-flex items-center gap-2 hover:text-violet-300 transition-colors">
+          <a
+            href="tel:+96181665911"
+            aria-label="Call +961 81 665 911"
+            className="inline-flex items-center gap-2 hover:text-violet-300 transition-colors break-all sm:break-normal"
+          >
             <PhoneLineIcon className="w-[15px] h-[15px]" />
             +961 81 665 911
           </a>
+          <button
+            type="button"
+            onClick={copyEmail}
+            aria-label="Copy email address"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+          >
+            {emailCopied ? 'Copied' : 'Copy Email'}
+          </button>
+          <button
+            type="button"
+            onClick={copyPhone}
+            aria-label="Copy phone number"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+          >
+            {phoneCopied ? 'Copied' : 'Copy Phone'}
+          </button>
         </div>
       </div>
     </section>

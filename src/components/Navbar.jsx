@@ -13,11 +13,36 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('education')
   const resumeUrl = `${import.meta.env.BASE_URL}JadAlHassanCV.pdf`
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const sectionIds = links.map(({ href }) => href.replace('#', ''))
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean)
+
+    if (!sections.length) return
+
+    const onScroll = () => {
+      const marker = window.scrollY + window.innerHeight * 0.3
+      let current = sectionIds[0]
+
+      sections.forEach((section) => {
+        if (section.offsetTop <= marker) current = section.id
+      })
+
+      setActiveSection(current)
+    }
+
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -45,7 +70,12 @@ export default function Navbar() {
             <a
               key={label}
               href={href}
-              className="text-slate-400 hover:text-white text-xs tracking-[0.08em] uppercase font-medium text-center transition-colors duration-200 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+              aria-current={activeSection === href.replace('#', '') ? 'page' : undefined}
+              className={`text-xs tracking-[0.08em] uppercase font-medium text-center transition-colors duration-200 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
+                activeSection === href.replace('#', '')
+                  ? 'text-white bg-violet-500/20'
+                  : 'text-slate-400 hover:text-white'
+              }`}
             >
               {label}
             </a>
@@ -92,7 +122,12 @@ export default function Navbar() {
               key={label}
               href={href}
               onClick={() => setOpen(false)}
-              className="text-slate-200 hover:text-white transition-colors py-2 text-sm tracking-[0.08em] uppercase rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+              aria-current={activeSection === href.replace('#', '') ? 'page' : undefined}
+              className={`transition-colors py-2 text-sm tracking-[0.08em] uppercase rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
+                activeSection === href.replace('#', '')
+                  ? 'text-white bg-violet-500/20'
+                  : 'text-slate-200 hover:text-white'
+              }`}
             >
               {label}
             </a>
@@ -102,6 +137,7 @@ export default function Navbar() {
             download
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
             aria-label="Open resume in a new tab"
             className="w-full sm:w-fit self-center text-center px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >

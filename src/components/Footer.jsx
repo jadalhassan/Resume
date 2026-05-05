@@ -17,9 +17,28 @@ export default function Footer() {
         >
           Contact Me <ArrowRightIcon />
         </a>
-        <p data-reveal style={{ '--reveal-delay': '205ms' }} className="text-slate-400 text-sm mb-7">
-          Currently looking for Full-Stack Developer internships in Beirut or remote.
-        </p>
+        <div
+          data-reveal
+          style={{ '--reveal-delay': '205ms' }}
+          className="max-w-3xl mx-auto mb-8 grid gap-3 sm:grid-cols-4 text-left"
+        >
+          <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+            <p className="text-slate-500 text-[11px] uppercase tracking-wider">Status</p>
+            <p className="text-white text-sm font-semibold mt-1">Open</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+            <p className="text-slate-500 text-[11px] uppercase tracking-wider">Role</p>
+            <p className="text-white text-sm font-semibold mt-1">Full-Stack Intern</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+            <p className="text-slate-500 text-[11px] uppercase tracking-wider">Location</p>
+            <p className="text-white text-sm font-semibold mt-1">Beirut / Remote</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+            <p className="text-slate-500 text-[11px] uppercase tracking-wider">Start</p>
+            <p className="text-white text-sm font-semibold mt-1">Immediately</p>
+          </div>
+        </div>
         <div data-reveal style={{ '--reveal-delay': '240ms' }} className="flex items-center justify-center gap-5 sm:gap-7 text-slate-500 text-sm mb-8 flex-wrap">
           <a
             href="https://github.com/jadalhassan"
@@ -58,7 +77,12 @@ export default function Footer() {
             +961 81 665 911
           </a>
         </div>
-        <p data-reveal style={{ '--reveal-delay': '300ms' }} className="text-slate-700 text-xs">Designed & built by Jad Al Hassan - 2026</p>
+        <p data-reveal style={{ '--reveal-delay': '300ms' }} className="text-slate-700 text-xs">
+          Designed & built by Jad Al Hassan - 2026
+        </p>
+        <p data-reveal style={{ '--reveal-delay': '340ms' }} className="text-slate-600 text-[11px] mt-2">
+          Last updated: May 2026
+        </p>
       </div>
     </footer>
   )
