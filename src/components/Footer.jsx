@@ -15,8 +15,8 @@ export default function Footer() {
           Say Hello →
         </a>
         <div className="flex items-center justify-center gap-6 text-slate-600 text-sm mb-8 flex-wrap">
-          <a href="#" className="hover:text-violet-400 transition-colors">GitHub</a>
-          <a href="#" className="hover:text-violet-400 transition-colors">LinkedIn</a>
+          <a href="https://github.com/jadalhassan" target="_blank" rel="noopener noreferrer" className="hover:text-violet-400 transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/jad-alhassan-377061339/" target="_blank" rel="noopener noreferrer" className="hover:text-violet-400 transition-colors">LinkedIn</a>
           <a href="mailto:jadalhassan.ja034@gmail.com" className="hover:text-violet-400 transition-colors">
             jadalhassan.ja034@gmail.com
           </a>

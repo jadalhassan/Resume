@@ -32,7 +32,7 @@ export default function Hero() {
             Email ↗
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/jad-alhassan-377061339/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-violet-500/40 text-slate-200 hover:text-white rounded-xl font-semibold transition-all duration-300 hover:-translate-y-0.5"
