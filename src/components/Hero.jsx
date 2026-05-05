@@ -6,12 +6,6 @@ export default function Hero() {
       <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto px-6 pt-28 pb-24 w-full">
-        {/* Available badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-sm font-medium mb-10">
-          <span className="w-2 h-2 rounded-full bg-green-400 shadow-sm shadow-green-400/50 animate-pulse" />
-          Open to internship opportunities
-        </div>
-
         {/* Name */}
         <h1 className="font-black tracking-tight leading-none mb-6">
           <span className="block text-4xl sm:text-6xl text-slate-300 mb-3 font-semibold">
