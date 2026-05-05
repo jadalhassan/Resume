@@ -54,6 +54,7 @@ export default function Hero() {
             href="https://github.com/jadalhassan"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open GitHub profile"
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors"
           >
             <GithubMarkIcon className="w-[15px] h-[15px]" />
@@ -63,6 +64,7 @@ export default function Hero() {
             href="https://www.linkedin.com/in/jad-alhassan-377061339/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open LinkedIn profile"
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors"
           >
             <LinkedinMarkIcon className="w-[15px] h-[15px]" />
@@ -70,12 +72,13 @@ export default function Hero() {
           </a>
           <a
             href="mailto:jadalhassan.ja034@gmail.com"
+            aria-label="Send email to Jad Al Hassan"
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors"
           >
             <MailLineIcon className="w-[15px] h-[15px]" />
             Email
           </a>
-          <a href="tel:+96181665911" className="inline-flex items-center gap-2 hover:text-violet-300 transition-colors">
+          <a href="tel:+96181665911" aria-label="Call +961 81 665 911" className="inline-flex items-center gap-2 hover:text-violet-300 transition-colors">
             <PhoneLineIcon className="w-[15px] h-[15px]" />
             +961 81 665 911
           </a>

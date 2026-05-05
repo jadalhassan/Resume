@@ -19,7 +19,7 @@ const projects = [
   {
     title: 'Sports Goods Store Management System',
     context: 'Software Engineering Project',
-    period: '2025',
+    period: '2026',
     highlights: [
       'Designed a web system for product listings, order management, and inventory workflows',
       'Documented requirements with IEEE SRS and modeled behavior using UML diagrams',
@@ -28,6 +28,18 @@ const projects = [
     tech: ['MVC', 'UML', 'IEEE SRS', 'Client-Server Architecture'],
     liveUrl: 'https://jer-s-eys.vercel.app/',
     codeUrl: 'https://github.com/SE-Pr0/jerSEys',
+  },
+  {
+    title: 'Networks Proxy Server',
+    context: 'Computer Networks Project',
+    period: '2026',
+    highlights: [
+      'Implemented a proxy server to mediate client-server communication over network sockets',
+      'Handled request forwarding and response relaying with attention to protocol behavior',
+      'Strengthened debugging and traffic analysis skills through practical networking scenarios',
+    ],
+    tech: ['Computer Networks', 'Sockets', 'Proxy Server', 'Client-Server'],
+    codeUrl: 'https://github.com/jadalhassan/Networks-Proxy-Server',
   },
   {
     title: 'Esports Performance Tracker',
@@ -44,7 +56,7 @@ const projects = [
   {
     title: 'AI Maze Game',
     context: 'Python + AI Logic Project',
-    period: '2024',
+    period: '2025',
     highlights: [
       'Developed an interactive maze game in Python Turtle with timers and difficulty levels',
       'Integrated A* pathfinding for hints, solution rendering, and optimal path guidance',
@@ -52,18 +64,6 @@ const projects = [
     ],
     tech: ['Python', 'Turtle', 'A* Pathfinding', 'Pandas', 'CSV Analytics'],
     codeUrl: 'https://github.com/jadalhassan/Maze-Game',
-  },
-  {
-    title: 'Networks Proxy Server',
-    context: 'Computer Networks Project',
-    period: '2025',
-    highlights: [
-      'Implemented a proxy server to mediate client-server communication over network sockets',
-      'Handled request forwarding and response relaying with attention to protocol behavior',
-      'Strengthened debugging and traffic analysis skills through practical networking scenarios',
-    ],
-    tech: ['Computer Networks', 'Sockets', 'Proxy Server', 'Client-Server'],
-    codeUrl: 'https://github.com/jadalhassan/Networks-Proxy-Server',
   },
 ]
 

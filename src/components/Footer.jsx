@@ -25,6 +25,7 @@ export default function Footer() {
             href="https://github.com/jadalhassan"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open GitHub profile"
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <GithubMarkIcon className="w-[15px] h-[15px]" />
@@ -34,6 +35,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/jad-alhassan-377061339/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open LinkedIn profile"
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <LinkedinMarkIcon className="w-[15px] h-[15px]" />
@@ -41,6 +43,7 @@ export default function Footer() {
           </a>
           <a
             href="mailto:jadalhassan.ja034@gmail.com"
+            aria-label="Send email to Jad Al Hassan"
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <MailLineIcon className="w-[15px] h-[15px]" />
@@ -48,6 +51,7 @@ export default function Footer() {
           </a>
           <a
             href="tel:+96181665911"
+            aria-label="Call +961 81 665 911"
             className="inline-flex items-center gap-2 hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <PhoneLineIcon className="w-[15px] h-[15px]" />

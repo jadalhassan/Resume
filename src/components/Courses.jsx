@@ -5,7 +5,7 @@ const courses = [
   {
     title: '100 Days of Code: The Complete Python Pro Bootcamp',
     provider: 'Udemy · Dr. Angela Yu',
-    period: '2025 - Present',
+    period: 'Summer 2025',
     details: [
       'Hands-on Python track covering fundamentals through practical projects',
       'Focus on automation, scripting, data handling, & API integration',
@@ -16,7 +16,7 @@ const courses = [
   {
     title: 'The Complete Full-Stack Web Development Bootcamp',
     provider: 'Udemy · Dr. Angela Yu',
-    period: '2025 - Present',
+    period: 'Summer 2025',
     details: [
       'End-to-end web development path from frontend UI to backend services',
       'Covers modern JavaScript workflows with Node.js, Express, & databases',
