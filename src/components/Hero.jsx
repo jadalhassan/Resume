@@ -14,7 +14,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg sm:text-2xl text-slate-300 font-medium mb-3 sm:mb-4 max-w-2xl">
-          Full-Stack Developer and CS Student at LAU
+          Full-Stack Developer & CS Student at LAU
         </p>
 
         <p className="text-slate-500 text-base sm:text-lg mb-10 sm:mb-12 max-w-xl">
@@ -64,3 +64,4 @@ export default function Hero() {
     </section>
   )
 }
+

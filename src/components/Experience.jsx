@@ -2,8 +2,8 @@ import { SectionHeading } from './About'
 import { ChevronRightIcon } from './Icons'
 
 const bullets = [
-  'Provided technical support for staff, troubleshooting hardware and software issues in a fast-paced environment',
-  'Maintained computer systems, printers, and network infrastructure ensuring minimal downtime',
+  'Provided technical support for staff, troubleshooting hardware & software issues in a fast-paced environment',
+  'Maintained computer systems, printers, & network infrastructure ensuring minimal downtime',
   'Resolved system issues efficiently, improving operational reliability in a critical healthcare setting',
 ]
 
@@ -42,3 +42,4 @@ export default function Experience() {
     </section>
   )
 }
+

@@ -6,9 +6,9 @@ const projects = [
     title: 'Course Management System',
     featured: true,
     description: [
-      'Responsive, mobile-first UI with React and Tailwind CSS using a structured component-based architecture',
-      'Dynamic pages for course browsing, enrollment, and management with client-side routing and state handling',
-      'RESTful API integration with Node.js/Express.js backend and MongoDB for persistent data storage',
+      'Responsive, mobile-first UI with React & Tailwind CSS using a structured component-based architecture',
+      'Dynamic pages for course browsing, enrollment, & management with client-side routing & state handling',
+      'RESTful API integration with Node.js/Express.js backend & MongoDB for persistent data storage',
       'JWT authentication with protected routes; backend deployed on Render',
     ],
     tech: ['React', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
@@ -16,27 +16,27 @@ const projects = [
   {
     title: 'Sports Goods Store Management System',
     description: [
-      'Web-based system for managing product listings, orders, and inventory workflows',
-      'System requirements defined with IEEE SRS standards and workflows modeled with UML diagrams',
-      'Applied MVC and client-server architecture principles for scalable system design',
+      'Web-based system for managing product listings, orders, & inventory workflows',
+      'System requirements defined with IEEE SRS standards & workflows modeled with UML diagrams',
+      'Applied MVC & client-server architecture principles for scalable system design',
     ],
     tech: ['MVC', 'UML', 'IEEE SRS', 'Client-Server Architecture'],
   },
   {
     title: 'Esports Performance Tracker',
     description: [
-      'Relational database designed with ER modeling and normalization techniques',
-      'Complex SQL queries with joins, aggregation, and subqueries for analytics',
-      'Triggers and views implemented to automate performance reporting',
+      'Relational database designed with ER modeling & normalization techniques',
+      'Complex SQL queries with joins, aggregation, & subqueries for analytics',
+      'Triggers & views implemented to automate performance reporting',
     ],
-    tech: ['SQL', 'ER Modeling', 'Normalization', 'Triggers and Views'],
+    tech: ['SQL', 'ER Modeling', 'Normalization', 'Triggers & Views'],
   },
   {
-    title: 'AI Maze Game (Main.py)',
+    title: 'AI Maze Game',
     description: [
-      'Interactive maze game built with Python Turtle, including keyboard movement, timer logic, and multiple difficulty levels',
-      'A* pathfinding algorithm integrated for solution generation, hints, and optional full-path visualization',
-      'Player performance metrics tracked and exported with pandas into CSV files for post-game analysis',
+      'Interactive maze game built with Python Turtle, including keyboard movement, timer logic, & multiple difficulty levels',
+      'A* pathfinding algorithm integrated for solution generation, hints, & optional full-path visualization',
+      'Player performance metrics tracked & exported with pandas into CSV files for post-game analysis',
       'Source file located at c:\\Users\\user\\Desktop\\Sem 2\\LAS205\\Main.py',
     ],
     tech: ['Python', 'Turtle', 'A* Pathfinding', 'Pandas', 'CSV Analytics'],
@@ -93,3 +93,4 @@ export default function Projects() {
     </section>
   )
 }
+

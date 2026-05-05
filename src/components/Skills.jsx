@@ -8,7 +8,7 @@ const skillGroups = [
     items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'SQL', 'HTML', 'CSS'],
   },
   {
-    category: 'Frameworks and Tools',
+    category: 'Frameworks & Tools',
     Icon: WrenchIcon,
     items: ['React', 'Node.js', 'Express.js', 'Tailwind CSS', 'MongoDB'],
   },
@@ -53,3 +53,4 @@ export default function Skills() {
     </section>
   )
 }
+

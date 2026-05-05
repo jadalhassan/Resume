@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <p className="text-2xl sm:text-3xl font-black text-white mb-3">Let&apos;s work together.</p>
         <p className="text-slate-500 mb-8 sm:mb-10 max-w-sm mx-auto">
-          I&apos;m actively looking for internship and project opportunities. My inbox is always open.
+          I&apos;m actively looking for internship & project opportunities. My inbox is always open.
         </p>
         <a
           href="mailto:jadalhassan.ja034@gmail.com"
@@ -39,8 +39,9 @@ export default function Footer() {
             jadalhassan.ja034@gmail.com
           </a>
         </div>
-        <p className="text-slate-700 text-xs">Designed and built by Jad Al Hassan - 2026</p>
+        <p className="text-slate-700 text-xs">Designed & built by Jad Al Hassan - 2026</p>
       </div>
     </footer>
   )
 }
+

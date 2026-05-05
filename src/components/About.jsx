@@ -10,7 +10,7 @@ export function SectionHeading({ number, title }) {
 }
 
 const coursework = [
-  'Data Structures and Algorithms',
+  'Data Structures & Algorithms',
   'Database Management Systems',
   'Operating Systems',
   'Software Engineering',
@@ -55,3 +55,4 @@ export default function About() {
     </section>
   )
 }
+
