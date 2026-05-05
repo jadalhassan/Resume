@@ -8,46 +8,44 @@ function formatHost(url) {
 }
 
 // ── Syntax tokenizer (left-to-right, no regex conflicts) ────────────────────
-const PY_KWS = new Set(['def','return','while','if','for','else','elif','import','from','in','not','and','or','break','class','self','True','False','None','with','as','raise','pass','float','inf'])
-const SQL_KWS = new Set(['CREATE','FUNCTION','RETURNS','BEGIN','DECLARE','SELECT','INTO','FROM','WHERE','UPDATE','SET','IF','ELSE','RETURN','END','TRIGGER','AFTER','INSERT','ON','FOR','EACH','ROW','THEN','DEFAULT','INT','VARCHAR','DECIMAL','AND','OR','NOT','NULL','IS'])
+const PY_KWS  = new Set(['def','return','while','if','for','else','elif','import','from','in','not','and','or','break','class','self','True','False','None','with','as','raise','pass','float','inf'])
+const SQL_KWS = new Set(['CREATE','FUNCTION','RETURNS','BEGIN','DECLARE','SELECT','INTO','FROM','WHERE','UPDATE','SET','IF','ELSE','RETURN','END','TRIGGER','AFTER','INSERT','ON','FOR','EACH','ROW','THEN','DEFAULT','INT','VARCHAR','DECIMAL','AND','OR','NOT','NULL','IS','JOIN','INNER','ORDER','BY','ASC'])
+const JS_KWS  = new Set(['const','let','var','function','return','if','else','throw','try','catch','finally','async','await','export','import','new','for','of','while','true','false','null','undefined','this','class','extends','typeof','instanceof'])
 
 const C = {
-  kw:   '#22d3ee', // cyan-400
-  fn:   '#fde047', // yellow-300
-  str:  '#fcd34d', // amber-300
-  num:  '#c4b5fd', // violet-300
-  cmt:  '#64748b', // slate-500
-  tx:   '#cbd5e1', // slate-300
-  punc: '#94a3b8', // slate-400
+  kw:   '#22d3ee',
+  fn:   '#fde047',
+  str:  '#fcd34d',
+  num:  '#c4b5fd',
+  cmt:  '#64748b',
+  tx:   '#cbd5e1',
+  punc: '#94a3b8',
 }
 
 function tokenizeLine(line, lang) {
-  const kws = lang === 'python' ? PY_KWS : SQL_KWS
-  const cmtPrefix = lang === 'python' ? '#' : '--'
+  const kws = lang === 'python' ? PY_KWS : lang === 'js' ? JS_KWS : SQL_KWS
   const toks = []
   let i = 0
 
   const trimmed = line.trimStart()
-  if (trimmed.startsWith(cmtPrefix)) return [{ text: line, color: C.cmt }]
+  if ((lang === 'python' && trimmed.startsWith('#')) ||
+      (lang === 'sql'    && trimmed.startsWith('--'))) {
+    return [{ text: line, color: C.cmt }]
+  }
 
   while (i < line.length) {
     const ch = line[i]
 
-    // inline comment
-    if (lang === 'python' && ch === '#') {
-      toks.push({ text: line.slice(i), color: C.cmt })
-      break
-    }
-    if (lang === 'sql' && ch === '-' && line[i + 1] === '-') {
-      toks.push({ text: line.slice(i), color: C.cmt })
-      break
-    }
+    // line comment
+    if (lang === 'python' && ch === '#') { toks.push({ text: line.slice(i), color: C.cmt }); break }
+    if (lang === 'sql' && ch === '-' && line[i+1] === '-') { toks.push({ text: line.slice(i), color: C.cmt }); break }
+    if (lang === 'js'  && ch === '/' && line[i+1] === '/') { toks.push({ text: line.slice(i), color: C.cmt }); break }
 
-    // byte/regular string literal
-    const isStr = (ch === '"' || ch === "'") || ((ch === 'b' || ch === 'B') && (line[i+1] === '"' || line[i+1] === "'"))
-    if (isStr) {
+    // string / template literal / byte string
+    const isBS = (ch === 'b' || ch === 'B') && (line[i+1] === '"' || line[i+1] === "'")
+    if (ch === '"' || ch === "'" || ch === '`' || isBS) {
       const start = i
-      const q = ch === 'b' || ch === 'B' ? line[++i] : ch
+      const q = isBS ? line[++i] : ch
       i++
       while (i < line.length && line[i] !== q) { if (line[i] === '\\') i++; i++ }
       toks.push({ text: line.slice(start, i + 1), color: C.str })
@@ -55,10 +53,10 @@ function tokenizeLine(line, lang) {
       continue
     }
 
-    // identifier / keyword / function
-    if (/[a-zA-Z_]/.test(ch)) {
+    // identifier / keyword / function call
+    if (/[a-zA-Z_$]/.test(ch)) {
       let j = i
-      while (j < line.length && /\w/.test(line[j])) j++
+      while (j < line.length && /[\w$]/.test(line[j])) j++
       const word = line.slice(i, j)
       toks.push({ text: word, color: kws.has(word) ? C.kw : line[j] === '(' ? C.fn : C.tx })
       i = j
@@ -106,29 +104,60 @@ function CodeDemo({ code, lang }) {
   )
 }
 
-// ── Iframe (scaled live site) ────────────────────────────────────────────────
-function IframePreview({ url }) {
-  return (
-    <div className="relative w-full h-full overflow-hidden">
-      <div style={{
-        position: 'absolute', top: 0, left: 0,
-        width: 'calc(100% / 0.36)', height: 'calc(100% / 0.36)',
-        transform: 'scale(0.36)', transformOrigin: 'top left',
-      }}>
-        <iframe
-          src={url}
-          title="Live preview"
-          loading="lazy"
-          style={{ width: '100%', height: '100%', border: 'none', pointerEvents: 'none' }}
-          sandbox="allow-scripts allow-same-origin"
-        />
-      </div>
-      <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#0b0f1a] to-transparent pointer-events-none" />
-    </div>
-  )
-}
-
 // ── Actual code snippets from each repo ─────────────────────────────────────
+
+// github.com/Khaliya-3a-Allah/course-management-system — server/middleware/authPlaceholder.js
+const CMS_CODE = `\
+export const authenticateRequest = asyncHandler(async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader?.startsWith("Bearer "))
+    throw new ApiError(401, "Authentication required.");
+  let decoded;
+  try {
+    decoded = jwt.verify(authHeader.split(" ")[1], env.JWT_SECRET);
+  } catch {
+    throw new ApiError(401, "Invalid or expired token.");
+  }
+  const user = await findById("users", decoded.id);
+  if (!user) throw new ApiError(401, "User no longer exists.");
+  if (user.isDeleted) throw new ApiError(403, "Account disabled.");
+  req.user = user;
+  next();
+});
+
+export function authorizeRoles(...roles) {
+  return (req, res, next) => {
+    if (!roles.includes(req.user?.role))
+      throw new ApiError(403, "Permission denied.");
+    next();
+  };
+}`
+
+// github.com/SE-Pr0/jerSEys — backend/src/controllers/orderController.js
+const JERSEYS_CODE = `\
+const createOrder = async (req, res, next) => {
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    await conn.beginTransaction();
+    const [items] = await conn.execute(
+      \`SELECT ci.quantity, p.name, p.price, p.stock
+       FROM cart_items ci JOIN products p ON p.id = ci.product_id
+       WHERE ci.user_id = ? FOR UPDATE\`, [req.user.id]);
+    if (!items.length) throw createError("Cart is empty", 400);
+    let total = 0;
+    for (const item of items) {
+      if (item.stock < item.quantity)
+        throw createError(\`Out of stock: \${item.name}\`, 400);
+      total += Number(item.price) * item.quantity;
+    }
+    await conn.execute(
+      \`INSERT INTO orders (user_id, total_price) VALUES (?, ?)\`,
+      [req.user.id, total.toFixed(2)]);
+    await conn.commit();
+  } catch (e) { if (conn) await conn.rollback(); next(e); }
+  finally { conn?.release(); }
+};`
 
 // github.com/jadalhassan/Networks-Proxy-Server — proxy_server.py
 const PROXY_CODE = `\
@@ -203,11 +232,11 @@ const projects = [
     context: 'Academic Full-Stack Project',
     period: '2026',
     featured: true,
-    demo: { type: 'iframe' },
+    demo: { type: 'code', code: CMS_CODE, lang: 'js' },
     highlights: [
       'Built a responsive UI with React & Tailwind using reusable components and clean routing',
       'Integrated Node.js/Express APIs with MongoDB for enrollment, browsing, and course management flows',
-      'Implemented JWT auth with protected routes and deployed backend services on Render',
+      'Implemented JWT auth middleware with role-based access control and soft-delete enforcement',
     ],
     tech: ['React', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
     liveUrl: 'https://khaliya-3a-allah.github.io/course-management-system/',
@@ -217,13 +246,13 @@ const projects = [
     title: 'Sports Goods Store Management System',
     context: 'Software Engineering Project',
     period: '2026',
-    demo: { type: 'iframe' },
+    demo: { type: 'code', code: JERSEYS_CODE, lang: 'js' },
     highlights: [
       'Designed a web system for product listings, order management, and inventory workflows',
-      'Documented requirements with IEEE SRS and modeled behavior using UML diagrams',
+      'Built transactional order creation with FOR UPDATE row-locking and atomic rollback',
       'Applied MVC & client-server architecture for modular and scalable structure',
     ],
-    tech: ['MVC', 'UML', 'IEEE SRS', 'Client-Server Architecture'],
+    tech: ['Node.js', 'Express.js', 'MySQL', 'MVC', 'Transactions'],
     liveUrl: 'https://jer-s-eys.vercel.app/',
     codeUrl: 'https://github.com/SE-Pr0/jerSEys',
   },
@@ -281,7 +310,6 @@ function ProjectDemo({ project }) {
         </span>
       </div>
       <div className="relative min-h-[210px] sm:min-h-[260px] overflow-hidden">
-        {demo.type === 'iframe' && <IframePreview url={liveUrl} />}
         {demo.type === 'code' && <CodeDemo code={demo.code} lang={demo.lang} />}
       </div>
     </div>
