@@ -1,4 +1,5 @@
 import { SectionHeading } from './About'
+import { ChevronRightIcon } from './Icons'
 
 const bullets = [
   'Provided technical support for staff, troubleshooting hardware and software issues in a fast-paced environment',
@@ -8,13 +9,13 @@ const bullets = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-32 relative">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="experience" className="py-20 sm:py-32 relative scroll-mt-24">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={2} title="Experience" />
-        <div className="relative pl-10">
+        <div className="relative pl-8 sm:pl-10">
           <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-violet-500/20 to-transparent" />
           <div className="absolute left-0 top-6 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-500 border-2 border-[#050508] shadow-lg shadow-violet-500/60" />
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 sm:p-10 hover:border-violet-500/30 hover:shadow-2xl hover:shadow-violet-500/5 transition-all duration-300">
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 hover:border-violet-500/30 hover:shadow-2xl hover:shadow-violet-500/5 transition-all duration-300">
             <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
               <div>
                 <h3 className="text-xl font-bold text-white">IT Support Intern</h3>
@@ -27,8 +28,10 @@ export default function Experience() {
             </div>
             <ul className="space-y-4">
               {bullets.map((point, i) => (
-                <li key={i} className="flex gap-4 text-slate-400 leading-relaxed">
-                  <span className="text-violet-500 shrink-0 mt-0.5">▹</span>
+                <li key={i} className="flex gap-3 text-slate-400 leading-relaxed text-sm sm:text-base">
+                  <span className="text-violet-500/80 shrink-0 mt-0.5">
+                    <ChevronRightIcon className="w-4 h-4" />
+                  </span>
                   {point}
                 </li>
               ))}
