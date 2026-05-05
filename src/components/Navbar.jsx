@@ -46,7 +46,7 @@ export default function Navbar() {
             href="mailto:jadalhassan.ja034@gmail.com"
             className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-violet-500/25"
           >
-            Hire Me
+            Contact Me
           </a>
         </div>
 
@@ -75,7 +75,7 @@ export default function Navbar() {
             href="mailto:jadalhassan.ja034@gmail.com"
             className="w-fit px-4 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg"
           >
-            Hire Me
+            Contact Me
           </a>
         </div>
       )}
