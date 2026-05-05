@@ -25,26 +25,37 @@ export default function Navbar() {
 
   useEffect(() => {
     const sectionIds = links.map(({ href }) => href.replace('#', ''))
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean)
+    const observedSet = new Set()
 
-    if (!sections.length) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: '-10% 0px -80% 0px', threshold: 0 }
+    )
 
-    const onScroll = () => {
-      const marker = window.scrollY + window.innerHeight * 0.3
-      let current = sectionIds[0]
-
-      sections.forEach((section) => {
-        if (section.offsetTop <= marker) current = section.id
+    const tryObserve = () => {
+      sectionIds.forEach((id) => {
+        if (observedSet.has(id)) return
+        const el = document.getElementById(id)
+        if (el) {
+          observedSet.add(id)
+          io.observe(el)
+        }
       })
-
-      setActiveSection(current)
     }
 
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    tryObserve()
+
+    const mo = new MutationObserver(tryObserve)
+    mo.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      io.disconnect()
+      mo.disconnect()
+    }
   }, [])
 
   return (
