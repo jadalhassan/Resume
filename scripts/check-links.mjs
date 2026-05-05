@@ -78,6 +78,9 @@ async function checkLink(url) {
     if (headStatus === 999 && url.includes('linkedin.com')) {
       return { ok: true, status: '999 (LinkedIn bot-blocked)' }
     }
+    if ([404].includes(headStatus) && url.includes('linkedin.com')) {
+      return { ok: true, status: '404 (LinkedIn bot-blocked)' }
+    }
     return { ok: false, status: headStatus }
   } catch {
     try {
