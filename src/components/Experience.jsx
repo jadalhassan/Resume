@@ -11,7 +11,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20 sm:py-32 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <SectionHeading number={3} title="Experience" />
+        <SectionHeading number={2} title="Experience" />
         <div className="relative pl-8 sm:pl-10">
           <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-violet-500/20 to-transparent" />
           <div className="absolute left-0 top-6 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-500 border-2 border-[#050508] shadow-lg shadow-violet-500/60" />
@@ -42,5 +42,6 @@ export default function Experience() {
     </section>
   )
 }
+
 
 

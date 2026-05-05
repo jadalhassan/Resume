@@ -13,7 +13,7 @@ export default function Education() {
   return (
     <section id="education" className="py-20 sm:py-32 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <SectionHeading number={2} title="Education" />
+        <SectionHeading number={1} title="Education" />
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 hover:border-violet-500/30 hover:bg-white/[7%] transition-all duration-300 hover:shadow-2xl hover:shadow-violet-500/5">
           <div className="flex flex-wrap justify-between items-start gap-6 mb-8">
             <div>
@@ -46,3 +46,4 @@ export default function Education() {
     </section>
   )
 }
+

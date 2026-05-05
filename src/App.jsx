@@ -1,6 +1,5 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
 import Education from './components/Education'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
@@ -28,7 +27,6 @@ function App() {
       <Navbar />
       <main id="main-content" tabIndex={-1} className="relative z-10">
         <Hero />
-        <About />
         <Education />
         <Experience />
         <Projects />
@@ -42,3 +40,4 @@ function App() {
 }
 
 export default App
+

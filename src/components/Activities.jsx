@@ -26,7 +26,7 @@ export default function Activities() {
   return (
     <section id="activities" className="py-20 sm:py-32 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <SectionHeading number={7} title="Activities" />
+        <SectionHeading number={6} title="Activities" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {activities.map(({ role, org, period, Icon }) => (
             <div
@@ -46,4 +46,5 @@ export default function Activities() {
     </section>
   )
 }
+
 

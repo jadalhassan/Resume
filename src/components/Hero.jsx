@@ -56,7 +56,12 @@ export default function Hero() {
             <p className="text-slate-500 text-sm mt-1">Technologies</p>
           </div>
           <div>
-            <p className="text-2xl sm:text-3xl font-black text-white leading-tight">+961 81 665 911</p>
+            <a
+              href="tel:+96181665911"
+              className="inline-flex items-center whitespace-nowrap text-xl sm:text-2xl font-black text-slate-100 hover:text-cyan-300 transition-colors"
+            >
+              <span className="text-violet-300 mr-2">+961</span>81 665 911
+            </a>
             <p className="text-slate-500 text-sm mt-1">Phone</p>
           </div>
         </div>

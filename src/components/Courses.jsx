@@ -28,7 +28,7 @@ export default function Courses() {
   return (
     <section id="courses" className="py-20 sm:py-32 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <SectionHeading number={5} title="Courses" />
+        <SectionHeading number={4} title="Courses" />
         <div className="flex flex-col gap-5">
           {courses.map((course) => (
             <article
@@ -72,5 +72,6 @@ export default function Courses() {
     </section>
   )
 }
+
 
 

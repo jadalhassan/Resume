@@ -47,7 +47,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 sm:py-32 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <SectionHeading number={4} title="Projects" />
+        <SectionHeading number={3} title="Projects" />
         <div className="flex flex-col gap-5">
           {projects.map((project, i) => (
             <div
@@ -93,5 +93,6 @@ export default function Projects() {
     </section>
   )
 }
+
 
 

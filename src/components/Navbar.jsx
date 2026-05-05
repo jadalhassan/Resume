@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { CloseIcon, MenuIcon } from './Icons'
 
 const links = [
-  { label: 'About', href: '#about' },
   { label: 'Education', href: '#education' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
@@ -94,3 +93,4 @@ export default function Navbar() {
     </nav>
   )
 }
+
