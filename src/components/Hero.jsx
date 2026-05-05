@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ArrowRightIcon, GithubMarkIcon, LinkedinMarkIcon, MailLineIcon, PhoneLineIcon } from './Icons'
+import { trackEvent } from '../lib/analytics'
 
 export default function Hero() {
   const [emailCopied, setEmailCopied] = useState(false)
@@ -57,12 +58,14 @@ export default function Hero() {
         <div data-reveal style={{ '--reveal-delay': '280ms' }} className="mt-8 flex items-center justify-center flex-wrap gap-3 sm:gap-4">
           <a
             href="#projects"
+            onClick={() => trackEvent('projects_cta_click', { source: 'hero' })}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             View Projects <ArrowRightIcon />
           </a>
           <a
             href="#contact"
+            onClick={() => trackEvent('contact_click', { source: 'hero' })}
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-violet-500/40 text-slate-200 hover:text-white rounded-xl font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Contact Me
@@ -79,6 +82,7 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open GitHub profile"
+            onClick={() => trackEvent('github_click', { source: 'hero' })}
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors"
           >
             <GithubMarkIcon className="w-[15px] h-[15px]" />
@@ -89,6 +93,7 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open LinkedIn profile"
+            onClick={() => trackEvent('linkedin_click', { source: 'hero' })}
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors"
           >
             <LinkedinMarkIcon className="w-[15px] h-[15px]" />
@@ -97,6 +102,7 @@ export default function Hero() {
           <a
             href="mailto:jadalhassan.ja034@gmail.com"
             aria-label="Send email to Jad Al Hassan"
+            onClick={() => trackEvent('email_click', { source: 'hero' })}
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors"
           >
             <MailLineIcon className="w-[15px] h-[15px]" />
@@ -105,6 +111,7 @@ export default function Hero() {
           <a
             href="tel:+96181665911"
             aria-label="Call +961 81 665 911"
+            onClick={() => trackEvent('phone_click', { source: 'hero' })}
             className="inline-flex items-center gap-2 hover:text-violet-300 transition-colors break-all sm:break-normal"
           >
             <PhoneLineIcon className="w-[15px] h-[15px]" />
@@ -112,7 +119,10 @@ export default function Hero() {
           </a>
           <button
             type="button"
-            onClick={copyEmail}
+            onClick={() => {
+              trackEvent('copy_email_click', { source: 'hero' })
+              copyEmail()
+            }}
             aria-label="Copy email address"
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
           >
@@ -120,12 +130,18 @@ export default function Hero() {
           </button>
           <button
             type="button"
-            onClick={copyPhone}
+            onClick={() => {
+              trackEvent('copy_phone_click', { source: 'hero' })
+              copyPhone()
+            }}
             aria-label="Copy phone number"
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
           >
             {phoneCopied ? 'Copied' : 'Copy Phone'}
           </button>
+          <span className="sr-only" aria-live="polite">
+            {emailCopied ? 'Email copied to clipboard.' : phoneCopied ? 'Phone number copied to clipboard.' : ''}
+          </span>
         </div>
       </div>
     </section>

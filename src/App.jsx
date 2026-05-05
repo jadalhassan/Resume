@@ -1,15 +1,21 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Education from './components/Education'
-import Experience from './components/Experience'
-import Projects from './components/Projects'
-import Courses from './components/Courses'
-import Skills from './components/Skills'
-import Activities from './components/Activities'
-import Footer from './components/Footer'
+import { initAnalytics } from './lib/analytics'
+
+const Education = lazy(() => import('./components/Education'))
+const Experience = lazy(() => import('./components/Experience'))
+const Projects = lazy(() => import('./components/Projects'))
+const Courses = lazy(() => import('./components/Courses'))
+const Skills = lazy(() => import('./components/Skills'))
+const Activities = lazy(() => import('./components/Activities'))
+const Footer = lazy(() => import('./components/Footer'))
 
 function App() {
+  useEffect(() => {
+    initAnalytics()
+  }, [])
+
   useEffect(() => {
     const targets = document.querySelectorAll('[data-reveal]')
     if (!targets.length) return
@@ -53,14 +59,18 @@ function App() {
       <Navbar />
       <main id="main-content" tabIndex={-1} className="relative z-10">
         <Hero />
-        <Education />
-        <Experience />
-        <Projects />
-        <Courses />
-        <Skills />
-        <Activities />
+        <Suspense fallback={<div className="h-20" aria-hidden="true" />}>
+          <Education />
+          <Experience />
+          <Projects />
+          <Courses />
+          <Skills />
+          <Activities />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="h-16" aria-hidden="true" />}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

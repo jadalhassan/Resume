@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "test:links": "node scripts/check-links.mjs",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "npm run test:links && vite build && gh-pages -d dist"
   },
   "dependencies": {
     "react": "^19.2.5",

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { CloseIcon, MenuIcon } from './Icons'
+import { trackEvent } from '../lib/analytics'
 
 const links = [
   { label: 'Education', href: '#education' },
@@ -56,8 +57,9 @@ export default function Navbar() {
     >
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a
-          href="#"
+          href="#main-content"
           aria-label="Back to top"
+          onClick={() => trackEvent('nav_top_click')}
           className="font-bold text-white text-lg tracking-tight rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
         >
           <span className="text-violet-400">&lt;</span>
@@ -70,6 +72,7 @@ export default function Navbar() {
             <a
               key={label}
               href={href}
+              onClick={() => trackEvent('nav_section_click', { section: href.replace('#', '') })}
               aria-current={activeSection === href.replace('#', '') ? 'page' : undefined}
               className={`text-xs tracking-[0.08em] uppercase font-medium text-center transition-colors duration-200 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
                 activeSection === href.replace('#', '')
@@ -89,12 +92,14 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open resume in a new tab"
+            onClick={() => trackEvent('resume_click', { source: 'navbar_desktop' })}
             className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white text-xs tracking-[0.08em] uppercase font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-violet-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Resume
           </a>
           <a
             href="#contact"
+            onClick={() => trackEvent('contact_click', { source: 'navbar_desktop' })}
             className="inline-flex items-center px-4 py-2 bg-white/5 border border-white/10 hover:border-violet-500/40 hover:bg-white/10 text-slate-200 text-xs tracking-[0.08em] uppercase font-semibold rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Contact Me
@@ -121,7 +126,10 @@ export default function Navbar() {
             <a
               key={label}
               href={href}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false)
+                trackEvent('nav_section_click', { section: href.replace('#', ''), source: 'navbar_mobile' })
+              }}
               aria-current={activeSection === href.replace('#', '') ? 'page' : undefined}
               className={`transition-colors py-2 text-sm tracking-[0.08em] uppercase rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
                 activeSection === href.replace('#', '')
@@ -137,7 +145,10 @@ export default function Navbar() {
             download
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false)
+              trackEvent('resume_click', { source: 'navbar_mobile' })
+            }}
             aria-label="Open resume in a new tab"
             className="w-full sm:w-fit self-center text-center px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
@@ -145,7 +156,10 @@ export default function Navbar() {
           </a>
           <a
             href="#contact"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false)
+              trackEvent('contact_click', { source: 'navbar_mobile' })
+            }}
             className="w-full sm:w-fit self-center text-center px-5 py-3 bg-white/5 border border-white/10 text-slate-200 text-sm font-semibold rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Contact Me

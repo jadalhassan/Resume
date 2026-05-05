@@ -1,4 +1,5 @@
 import { ArrowRightIcon, GithubMarkIcon, LinkedinMarkIcon, MailLineIcon, PhoneLineIcon } from './Icons'
+import { trackEvent } from '../lib/analytics'
 
 export default function Footer() {
   return (
@@ -13,6 +14,7 @@ export default function Footer() {
           data-reveal
           style={{ '--reveal-delay': '160ms' }}
           href="mailto:jadalhassan.ja034@gmail.com"
+          onClick={() => trackEvent('contact_click', { source: 'footer_cta' })}
           className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/30 hover:-translate-y-0.5 mb-10 sm:mb-14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
         >
           Contact Me <ArrowRightIcon />
@@ -45,6 +47,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open GitHub profile"
+            onClick={() => trackEvent('github_click', { source: 'footer' })}
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <GithubMarkIcon className="w-[15px] h-[15px]" />
@@ -55,6 +58,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open LinkedIn profile"
+            onClick={() => trackEvent('linkedin_click', { source: 'footer' })}
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <LinkedinMarkIcon className="w-[15px] h-[15px]" />
@@ -63,6 +67,7 @@ export default function Footer() {
           <a
             href="mailto:jadalhassan.ja034@gmail.com"
             aria-label="Send email to Jad Al Hassan"
+            onClick={() => trackEvent('email_click', { source: 'footer' })}
             className="inline-flex items-center gap-2 tracking-wide uppercase hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <MailLineIcon className="w-[15px] h-[15px]" />
@@ -71,6 +76,7 @@ export default function Footer() {
           <a
             href="tel:+96181665911"
             aria-label="Call +961 81 665 911"
+            onClick={() => trackEvent('phone_click', { source: 'footer' })}
             className="inline-flex items-center gap-2 hover:text-violet-300 transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             <PhoneLineIcon className="w-[15px] h-[15px]" />
