@@ -10,12 +10,12 @@ const skillGroups = [
   {
     category: 'Frameworks & Tools',
     Icon: WrenchIcon,
-    items: ['React', 'Node.js', 'Express.js', 'Tailwind CSS', 'MongoDB'],
+    items: ['React', 'Node.js', 'Express.js', 'Tailwind CSS', 'MongoDB', 'Git', 'GitHub', 'Pandas', 'Vite'],
   },
   {
     category: 'Core Concepts',
     Icon: LightbulbIcon,
-    items: ['OOP', 'REST APIs', 'Authentication', 'Data Structures', 'Debugging'],
+    items: ['OOP', 'REST APIs', 'Authentication', 'Data Structures', 'Algorithms', 'Database Design', 'Debugging'],
   },
   {
     category: 'Languages Spoken',
