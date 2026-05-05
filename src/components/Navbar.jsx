@@ -13,6 +13,7 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const resumeUrl = `${import.meta.env.BASE_URL}JadAlHassanCV.pdf`
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -24,8 +25,8 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? 'bg-[#050508]/80 backdrop-blur-xl border-b border-white/5'
-          : ''
+          ? 'bg-[#050508]/90 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(2,6,23,0.55)]'
+          : 'bg-[#050508]/65 backdrop-blur-md border-b border-white/8 shadow-[0_8px_24px_rgba(2,6,23,0.4)]'
       }`}
     >
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -52,7 +53,7 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-2">
           <a
-            href="/JadAlHassanCV.pdf"
+            href={resumeUrl}
             download
             className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white text-xs tracking-[0.08em] uppercase font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-violet-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
@@ -93,7 +94,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/JadAlHassanCV.pdf"
+            href={resumeUrl}
             download
             className="w-full sm:w-fit self-center text-center px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
@@ -108,7 +109,10 @@ export default function Navbar() {
           </a>
         </div>
       )}
+
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-400/35 to-transparent" />
     </nav>
   )
 }
+
 
