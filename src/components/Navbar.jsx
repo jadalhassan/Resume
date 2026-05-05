@@ -74,10 +74,10 @@ export default function Navbar() {
               href={href}
               onClick={() => trackEvent('nav_section_click', { section: href.replace('#', '') })}
               aria-current={activeSection === href.replace('#', '') ? 'page' : undefined}
-              className={`text-xs tracking-[0.08em] uppercase font-medium text-center transition-colors duration-200 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
+              className={`text-xs tracking-[0.08em] uppercase font-semibold text-center transition-all duration-200 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
                 activeSection === href.replace('#', '')
-                  ? 'text-white bg-violet-500/20'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'text-white bg-violet-500/30 border border-violet-400/50 shadow-[0_0_12px_rgba(139,92,246,0.4)]'
+                  : 'text-slate-400 hover:text-white border border-transparent'
               }`}
             >
               {label}
@@ -131,10 +131,10 @@ export default function Navbar() {
                 trackEvent('nav_section_click', { section: href.replace('#', ''), source: 'navbar_mobile' })
               }}
               aria-current={activeSection === href.replace('#', '') ? 'page' : undefined}
-              className={`transition-colors py-2 text-sm tracking-[0.08em] uppercase rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
+              className={`transition-all py-2 text-sm tracking-[0.08em] uppercase font-semibold rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ${
                 activeSection === href.replace('#', '')
-                  ? 'text-white bg-violet-500/20'
-                  : 'text-slate-200 hover:text-white'
+                  ? 'text-white bg-violet-500/30 border border-violet-400/50 shadow-[0_0_12px_rgba(139,92,246,0.4)]'
+                  : 'text-slate-200 hover:text-white border border-transparent'
               }`}
             >
               {label}
