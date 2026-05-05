@@ -1,4 +1,4 @@
-import { GithubMarkIcon, LinkedinMarkIcon, MailLineIcon, PhoneLineIcon } from './Icons'
+import { ArrowRightIcon, GithubMarkIcon, LinkedinMarkIcon, MailLineIcon, PhoneLineIcon } from './Icons'
 
 export default function Hero() {
   return (
@@ -30,9 +30,24 @@ export default function Hero() {
           enjoy turning complex ideas into products that are simple to use and easy to maintain.
         </p>
 
+        <div data-reveal style={{ '--reveal-delay': '280ms' }} className="mt-8 flex items-center justify-center flex-wrap gap-3 sm:gap-4">
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-violet-600 hover:bg-violet-500 text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+          >
+            View Projects <ArrowRightIcon />
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-violet-500/40 text-slate-200 hover:text-white rounded-xl font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+          >
+            Contact Me
+          </a>
+        </div>
+
         <div
           data-reveal
-          style={{ '--reveal-delay': '300ms' }}
+          style={{ '--reveal-delay': '340ms' }}
           className="mt-8 flex items-center justify-center flex-wrap gap-x-5 gap-y-3 text-slate-500 text-sm"
         >
           <a

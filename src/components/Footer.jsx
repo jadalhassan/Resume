@@ -2,7 +2,7 @@ import { ArrowRightIcon, GithubMarkIcon, LinkedinMarkIcon, MailLineIcon, PhoneLi
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative py-14 sm:py-20 mt-10 border-t border-white/5 scroll-mt-24">
+    <footer id="contact" className="relative py-24 mt-10 border-t border-white/5 scroll-mt-24">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <p data-reveal className="text-2xl sm:text-3xl font-black text-white mb-3">Let&apos;s work together.</p>
@@ -17,6 +17,9 @@ export default function Footer() {
         >
           Contact Me <ArrowRightIcon />
         </a>
+        <p data-reveal style={{ '--reveal-delay': '205ms' }} className="text-slate-400 text-sm mb-7">
+          Currently looking for Full-Stack Developer internships in Beirut or remote.
+        </p>
         <div data-reveal style={{ '--reveal-delay': '240ms' }} className="flex items-center justify-center gap-5 sm:gap-7 text-slate-500 text-sm mb-8 flex-wrap">
           <a
             href="https://github.com/jadalhassan"

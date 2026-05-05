@@ -1,57 +1,81 @@
 import { SectionHeading } from './About'
-import { ChevronRightIcon, SparkleIcon } from './Icons'
+import { ChevronRightIcon, GithubMarkIcon, SparkleIcon } from './Icons'
 
 const projects = [
   {
     title: 'Course Management System',
+    context: 'Academic Full-Stack Project',
+    period: '2026',
     featured: true,
-    description: [
-      'Responsive, mobile-first UI with React & Tailwind CSS using a structured component-based architecture',
-      'Dynamic pages for course browsing, enrollment, & management with client-side routing & state handling',
-      'RESTful API integration with Node.js/Express.js backend & MongoDB for persistent data storage',
-      'JWT authentication with protected routes; backend deployed on Render',
+    highlights: [
+      'Built a responsive UI with React & Tailwind using reusable components and clean routing',
+      'Integrated Node.js/Express APIs with MongoDB for enrollment, browsing, and course management flows',
+      'Implemented JWT auth with protected routes and deployed backend services on Render',
     ],
     tech: ['React', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
+    liveUrl: 'https://khaliya-3a-allah.github.io/course-management-system/',
+    codeUrl: 'https://github.com/Khaliya-3a-Allah/course-management-system',
   },
   {
     title: 'Sports Goods Store Management System',
-    description: [
-      'Web-based system for managing product listings, orders, & inventory workflows',
-      'System requirements defined with IEEE SRS standards & workflows modeled with UML diagrams',
-      'Applied MVC & client-server architecture principles for scalable system design',
+    context: 'Software Engineering Project',
+    period: '2025',
+    highlights: [
+      'Designed a web system for product listings, order management, and inventory workflows',
+      'Documented requirements with IEEE SRS and modeled behavior using UML diagrams',
+      'Applied MVC & client-server architecture for modular and scalable structure',
     ],
     tech: ['MVC', 'UML', 'IEEE SRS', 'Client-Server Architecture'],
+    liveUrl: 'https://jer-s-eys.vercel.app/',
+    codeUrl: 'https://github.com/SE-Pr0/jerSEys',
   },
   {
     title: 'Esports Performance Tracker',
-    description: [
-      'Relational database designed with ER modeling & normalization techniques',
-      'Complex SQL queries with joins, aggregation, & subqueries for analytics',
-      'Triggers & views implemented to automate performance reporting',
+    context: 'Database Systems Project',
+    period: '2025',
+    highlights: [
+      'Designed a relational schema with ER modeling and normalization best practices',
+      'Created analytical SQL queries using joins, aggregations, and nested subqueries',
+      'Implemented triggers & views to automate reporting and ensure data consistency',
     ],
     tech: ['SQL', 'ER Modeling', 'Normalization', 'Triggers & Views'],
+    codeUrl: 'https://github.com/jadalhassan/Esports-Team-Performance-Tracker',
   },
   {
     title: 'AI Maze Game',
-    description: [
-      'Interactive maze game built with Python Turtle, including keyboard movement, timer logic, & multiple difficulty levels',
-      'A* pathfinding algorithm integrated for solution generation, hints, & optional full-path visualization',
-      'Player performance metrics tracked & exported with pandas into CSV files for post-game analysis',
-      'Source file located at c:\\Users\\user\\Desktop\\Sem 2\\LAS205\\Main.py',
+    context: 'Python + AI Logic Project',
+    period: '2024',
+    highlights: [
+      'Developed an interactive maze game in Python Turtle with timers and difficulty levels',
+      'Integrated A* pathfinding for hints, solution rendering, and optimal path guidance',
+      'Tracked player metrics and exported session data to CSV with pandas for analysis',
     ],
     tech: ['Python', 'Turtle', 'A* Pathfinding', 'Pandas', 'CSV Analytics'],
+    codeUrl: 'https://github.com/jadalhassan/Maze-Game',
+  },
+  {
+    title: 'Networks Proxy Server',
+    context: 'Computer Networks Project',
+    period: '2025',
+    highlights: [
+      'Implemented a proxy server to mediate client-server communication over network sockets',
+      'Handled request forwarding and response relaying with attention to protocol behavior',
+      'Strengthened debugging and traffic analysis skills through practical networking scenarios',
+    ],
+    tech: ['Computer Networks', 'Sockets', 'Proxy Server', 'Client-Server'],
+    codeUrl: 'https://github.com/jadalhassan/Networks-Proxy-Server',
   },
 ]
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 sm:py-32 relative scroll-mt-24">
+    <section id="projects" className="py-24 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={3} title="Projects" />
         <div className="flex flex-col gap-5">
           {projects.map((project, i) => (
             <div
-              key={i}
+              key={project.title}
               data-reveal
               style={{ '--reveal-delay': `${80 + i * 90}ms` }}
               className={`relative group bg-white/5 border rounded-2xl p-6 sm:p-10 transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5 ${
@@ -61,15 +85,23 @@ export default function Projects() {
               }`}
             >
               {project.featured && (
-                <span className="inline-flex sm:absolute sm:top-6 sm:right-6 items-center gap-1.5 px-2.5 py-1 mb-3 sm:mb-0 bg-violet-500/20 border border-violet-500/30 rounded-full text-violet-300 text-xs font-mono">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 mb-4 bg-violet-500/20 border border-violet-500/30 rounded-full text-violet-300 text-xs font-mono">
                   <SparkleIcon className="w-3.5 h-3.5" /> Featured
                 </span>
               )}
-              <h3 className="text-xl font-bold text-white mb-5 group-hover:text-violet-300 transition-colors duration-300 sm:pr-24">
-                {project.title}
-              </h3>
+              <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-violet-300 transition-colors duration-300 sm:pr-24">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-400 text-sm sm:text-base">{project.context}</p>
+                </div>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-slate-300 text-xs sm:text-sm font-mono">
+                  {project.period}
+                </span>
+              </div>
               <ul className="space-y-3 mb-6">
-                {project.description.map((point, j) => (
+                {project.highlights.map((point, j) => (
                   <li key={j} className="flex gap-3 text-slate-400 text-sm leading-relaxed">
                     <span className="text-violet-500/80 shrink-0 mt-0.5">
                       <ChevronRightIcon className="w-4 h-4" />
@@ -78,7 +110,7 @@ export default function Projects() {
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-2 pt-5 border-t border-white/5">
+              <div className="flex flex-wrap gap-2 pt-5 border-t border-white/5 mb-5">
                 {project.tech.map((t) => (
                   <span
                     key={t}
@@ -87,6 +119,27 @@ export default function Projects() {
                     {t}
                   </span>
                 ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-lg transition-colors"
+                  >
+                    Live Demo
+                  </a>
+                )}
+                <a
+                  href={project.codeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-[#161b22] hover:bg-[#1f2630] border border-[#30363d] text-[#f0f6fc] rounded-lg transition-colors"
+                >
+                  <GithubMarkIcon className="w-3.5 h-3.5" />
+                  GitHub
+                </a>
               </div>
             </div>
           ))}

@@ -1,5 +1,5 @@
 import { SectionHeading } from './About'
-import { TrophyIcon, WalletIcon, TerminalIcon } from './Icons'
+import { CodeIcon, MountainIcon, SoccerBallIcon, TrophyIcon } from './Icons'
 
 const activities = [
   {
@@ -12,25 +12,25 @@ const activities = [
     role: 'Treasurer',
     org: 'LAU Football Fans Club',
     period: 'Fall 2025 - Spring 2026',
-    Icon: WalletIcon,
+    Icon: SoccerBallIcon,
   },
   {
     role: 'Member',
     org: 'Computer Science Club',
     period: 'Fall 2024 - Present',
-    Icon: TerminalIcon,
+    Icon: CodeIcon,
   },
   {
     role: 'Participant',
     org: 'Hiking',
     period: '2022 - Present',
-    Icon: TrophyIcon,
+    Icon: MountainIcon,
   },
 ]
 
 export default function Activities() {
   return (
-    <section id="activities" className="py-20 sm:py-32 relative scroll-mt-24">
+    <section id="activities" className="py-24 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={6} title="Activities" />
         <div className="grid gap-4 sm:grid-cols-2">
@@ -43,7 +43,7 @@ export default function Activities() {
             >
               <div className="flex items-start justify-between gap-4 mb-5">
                 <div className="text-violet-300">
-                  <Icon />
+                  <Icon className="w-7 h-7" />
                 </div>
                 <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-slate-400 text-xs font-mono">
                   {period}

@@ -311,3 +311,46 @@ export function PhoneLineIcon({ className = 'w-4 h-4' }) {
     </svg>
   )
 }
+
+export function SoccerBallIcon({ className = 'w-7 h-7' }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="m12 7 2.4 1.7-.9 2.8h-3l-.9-2.8z" />
+      <path d="m9.6 12 1.2 2.7h2.4l1.2-2.7" />
+      <path d="m9 16.7-2.3 1.1" />
+      <path d="m15 16.7 2.3 1.1" />
+      <path d="m7.3 10-2.1 1.4 1.1 2.7" />
+      <path d="m16.7 10 2.1 1.4-1.1 2.7" />
+    </svg>
+  )
+}
+
+export function MountainIcon({ className = 'w-7 h-7' }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="m3 19 6.6-10 3.1 4.8L15 11l6 8H3Z" />
+      <path d="m9.6 9 1.8-2.9L14 10.2" />
+    </svg>
+  )
+}

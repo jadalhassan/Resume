@@ -11,7 +11,7 @@ const coursework = [
 
 export default function Education() {
   return (
-    <section id="education" className="py-20 sm:py-32 relative scroll-mt-24">
+    <section id="education" className="py-24 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={1} title="Education" />
         <div

@@ -11,7 +11,7 @@ export function SectionHeading({ number, title }) {
 
 export default function About() {
   return (
-    <section id="about" className="py-20 sm:py-32 relative scroll-mt-24">
+    <section id="about" className="py-24 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={1} title="About" />
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 hover:border-violet-500/30 hover:bg-white/[7%] transition-all duration-300 hover:shadow-2xl hover:shadow-violet-500/5">

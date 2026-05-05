@@ -4,7 +4,8 @@ import { ChevronRightIcon } from './Icons'
 const courses = [
   {
     title: '100 Days of Code: The Complete Python Pro Bootcamp',
-    instructor: 'Dr. Angela Yu, Developer & Lead Instructor',
+    provider: 'Udemy · Dr. Angela Yu',
+    period: '2025 - Present',
     details: [
       'Hands-on Python track covering fundamentals through practical projects',
       'Focus on automation, scripting, data handling, & API integration',
@@ -14,7 +15,8 @@ const courses = [
   },
   {
     title: 'The Complete Full-Stack Web Development Bootcamp',
-    instructor: 'Dr. Angela Yu, Developer & Lead Instructor',
+    provider: 'Udemy · Dr. Angela Yu',
+    period: '2025 - Present',
     details: [
       'End-to-end web development path from frontend UI to backend services',
       'Covers modern JavaScript workflows with Node.js, Express, & databases',
@@ -26,7 +28,7 @@ const courses = [
 
 export default function Courses() {
   return (
-    <section id="courses" className="py-20 sm:py-32 relative scroll-mt-24">
+    <section id="courses" className="py-24 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={4} title="Courses" />
         <div className="flex flex-col gap-5">
@@ -37,13 +39,16 @@ export default function Courses() {
               style={{ '--reveal-delay': `${80 + i * 90}ms` }}
               className="relative group bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5 hover:border-violet-500/25 hover:shadow-violet-500/5"
             >
-              <div className="mb-6">
+              <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
                 <div>
                   <h3 className="text-white text-xl font-bold leading-tight mb-2 group-hover:text-violet-300 transition-colors duration-300">
                     {course.title}
                   </h3>
-                  <p className="text-slate-400 text-sm">{course.instructor}</p>
+                  <p className="text-slate-400 text-sm sm:text-base">{course.provider}</p>
                 </div>
+                <span className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-slate-300 text-xs sm:text-sm font-mono">
+                  {course.period}
+                </span>
               </div>
 
               <ul className="space-y-3 mb-6">

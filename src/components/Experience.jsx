@@ -37,7 +37,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 sm:py-32 relative scroll-mt-24">
+    <section id="experience" className="py-24 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={2} title="Experience" />
 

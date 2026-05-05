@@ -55,6 +55,8 @@ export default function Navbar() {
           <a
             href={resumeUrl}
             download
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white text-xs tracking-[0.08em] uppercase font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-violet-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Resume
@@ -96,6 +98,8 @@ export default function Navbar() {
           <a
             href={resumeUrl}
             download
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-fit self-center text-center px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Resume
