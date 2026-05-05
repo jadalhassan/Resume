@@ -15,7 +15,11 @@ export default function Experience() {
         <div className="relative pl-8 sm:pl-10">
           <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-violet-500/20 to-transparent" />
           <div className="absolute left-0 top-6 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-500 border-2 border-[#050508] shadow-lg shadow-violet-500/60" />
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 hover:border-violet-500/30 hover:shadow-2xl hover:shadow-violet-500/5 transition-all duration-300">
+          <div
+            data-reveal
+            style={{ '--reveal-delay': '80ms' }}
+            className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 hover:border-violet-500/30 hover:shadow-2xl hover:shadow-violet-500/5 transition-all duration-300"
+          >
             <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
               <div>
                 <h3 className="text-xl font-bold text-white">IT Support Intern</h3>
@@ -28,7 +32,12 @@ export default function Experience() {
             </div>
             <ul className="space-y-4">
               {bullets.map((point, i) => (
-                <li key={i} className="flex gap-3 text-slate-400 leading-relaxed text-sm sm:text-base">
+                <li
+                  key={i}
+                  data-reveal
+                  style={{ '--reveal-delay': `${180 + i * 70}ms` }}
+                  className="flex gap-3 text-slate-400 leading-relaxed text-sm sm:text-base"
+                >
                   <span className="text-violet-500/80 shrink-0 mt-0.5">
                     <ChevronRightIcon className="w-4 h-4" />
                   </span>

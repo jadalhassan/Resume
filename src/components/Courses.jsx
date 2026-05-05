@@ -30,9 +30,11 @@ export default function Courses() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={4} title="Courses" />
         <div className="flex flex-col gap-5">
-          {courses.map((course) => (
+          {courses.map((course, i) => (
             <article
               key={course.title}
+              data-reveal
+              style={{ '--reveal-delay': `${80 + i * 90}ms` }}
               className="relative group bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5 hover:border-violet-500/25 hover:shadow-violet-500/5"
             >
               <div className="mb-6">

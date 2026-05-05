@@ -28,9 +28,11 @@ export default function Activities() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={6} title="Activities" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {activities.map(({ role, org, period, Icon }) => (
+          {activities.map(({ role, org, period, Icon }, i) => (
             <div
               key={`${role}-${org}`}
+              data-reveal
+              style={{ '--reveal-delay': `${80 + i * 90}ms` }}
               className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-7 hover:border-violet-500/30 hover:shadow-xl hover:shadow-violet-500/5 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-violet-300 mb-5">

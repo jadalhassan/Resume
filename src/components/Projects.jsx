@@ -52,6 +52,8 @@ export default function Projects() {
           {projects.map((project, i) => (
             <div
               key={i}
+              data-reveal
+              style={{ '--reveal-delay': `${80 + i * 90}ms` }}
               className={`relative group bg-white/5 border rounded-2xl p-6 sm:p-10 transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5 ${
                 project.featured
                   ? 'border-violet-500/25 hover:border-violet-500/50 hover:shadow-violet-500/10'

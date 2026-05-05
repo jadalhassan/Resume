@@ -14,7 +14,11 @@ export default function Education() {
     <section id="education" className="py-20 sm:py-32 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={1} title="Education" />
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 hover:border-violet-500/30 hover:bg-white/[7%] transition-all duration-300 hover:shadow-2xl hover:shadow-violet-500/5">
+        <div
+          data-reveal
+          style={{ '--reveal-delay': '80ms' }}
+          className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-10 hover:border-violet-500/30 hover:bg-white/[7%] transition-all duration-300 hover:shadow-2xl hover:shadow-violet-500/5"
+        >
           <div className="flex flex-wrap justify-between items-start gap-6 mb-8">
             <div>
               <span className="inline-block px-3 py-1 bg-violet-500/10 border border-violet-500/20 rounded-full text-violet-300 text-xs font-semibold mb-4">
@@ -31,9 +35,11 @@ export default function Education() {
           <div className="pt-6 border-t border-white/5">
             <p className="text-slate-500 text-xs font-mono tracking-widest uppercase mb-4">Relevant Coursework</p>
             <div className="flex flex-wrap gap-2">
-              {coursework.map((course) => (
+              {coursework.map((course, i) => (
                 <span
                   key={course}
+                  data-reveal
+                  style={{ '--reveal-delay': `${150 + i * 45}ms` }}
                   className="px-3 py-1.5 bg-white/5 border border-white/10 text-slate-300 rounded-lg text-xs sm:text-sm hover:border-violet-500/40 hover:text-violet-300 transition-colors cursor-default"
                 >
                   {course}

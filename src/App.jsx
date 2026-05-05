@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Education from './components/Education'
@@ -9,6 +10,31 @@ import Activities from './components/Activities'
 import Footer from './components/Footer'
 
 function App() {
+  useEffect(() => {
+    const targets = document.querySelectorAll('[data-reveal]')
+    if (!targets.length) return
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      targets.forEach((el) => el.classList.add('is-visible'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        })
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' },
+    )
+
+    targets.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#050508] text-slate-400 relative overflow-x-hidden">
       <a

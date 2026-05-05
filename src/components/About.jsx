@@ -1,6 +1,6 @@
 export function SectionHeading({ number, title }) {
   return (
-    <div className="mb-10 sm:mb-14">
+    <div data-reveal className="mb-10 sm:mb-14">
       <p className="text-violet-400/60 font-mono text-xs tracking-[0.3em] uppercase mb-3">
         {String(number).padStart(2, '0')}.
       </p>
