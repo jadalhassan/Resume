@@ -3,10 +3,12 @@ import { CloseIcon, MenuIcon } from './Icons'
 
 const links = [
   { label: 'About', href: '#about' },
+  { label: 'Education', href: '#education' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Courses', href: '#courses' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Activities', href: '#activities' },
 ]
 
 export default function Navbar() {
@@ -37,7 +39,7 @@ export default function Navbar() {
           <span className="text-violet-400">/&gt;</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {links.map(({ label, href }) => (
             <a
               key={label}
@@ -56,7 +58,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+          className="lg:hidden min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -69,7 +71,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-nav"
-          className="md:hidden border-t border-white/5 px-4 sm:px-6 py-5 flex flex-col gap-3 bg-[#050508]/95 backdrop-blur-xl"
+          className="lg:hidden border-t border-white/5 px-4 sm:px-6 py-5 flex flex-col gap-3 bg-[#050508]/95 backdrop-blur-xl"
         >
           {links.map(({ label, href }) => (
             <a

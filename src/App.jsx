@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
+import Education from './components/Education'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Courses from './components/Courses'
@@ -28,6 +29,7 @@ function App() {
       <main id="main-content" tabIndex={-1} className="relative z-10">
         <Hero />
         <About />
+        <Education />
         <Experience />
         <Projects />
         <Courses />
