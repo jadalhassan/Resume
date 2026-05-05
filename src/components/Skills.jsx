@@ -17,6 +17,11 @@ const skillGroups = [
     Icon: LightbulbIcon,
     items: ['OOP', 'REST APIs', 'Authentication', 'Data Structures', 'Debugging'],
   },
+  {
+    category: 'Languages Spoken',
+    Icon: LightbulbIcon,
+    items: ['Arabic', 'English'],
+  },
 ]
 
 export default function Skills() {
@@ -24,7 +29,7 @@ export default function Skills() {
     <section id="skills" className="py-20 sm:py-32 relative scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <SectionHeading number={5} title="Skills" />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
           {skillGroups.map(({ category, Icon, items }, i) => (
             <div
               key={category}

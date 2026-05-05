@@ -28,7 +28,7 @@ export default function Navbar() {
           : ''
       }`}
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a
           href="#"
           className="font-bold text-white text-lg tracking-tight rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
@@ -38,19 +38,29 @@ export default function Navbar() {
           <span className="text-violet-400">/&gt;</span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2 bg-white/[0.04] border border-white/10 rounded-full px-3 py-2 backdrop-blur-md shadow-[0_8px_24px_rgba(3,8,20,0.35)]">
           {links.map(({ label, href }) => (
             <a
               key={label}
               href={href}
-              className="text-slate-400 hover:text-white text-sm font-medium transition-colors duration-200 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+              className="text-slate-400 hover:text-white text-xs tracking-[0.08em] uppercase font-medium text-center transition-colors duration-200 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
             >
               {label}
             </a>
           ))}
+        </div>
+
+        <div className="hidden lg:flex items-center gap-2">
           <a
-            href="mailto:jadalhassan.ja034@gmail.com"
-            className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-violet-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+            href="/JadAlHassanCV.pdf"
+            download
+            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white text-xs tracking-[0.08em] uppercase font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-violet-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+          >
+            Resume
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center px-4 py-2 bg-white/5 border border-white/10 hover:border-violet-500/40 hover:bg-white/10 text-slate-200 text-xs tracking-[0.08em] uppercase font-semibold rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Contact Me
           </a>
@@ -70,21 +80,29 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-nav"
-          className="lg:hidden border-t border-white/5 px-4 sm:px-6 py-5 flex flex-col gap-3 bg-[#050508]/95 backdrop-blur-xl"
+          className="lg:hidden border-t border-white/5 px-4 sm:px-6 py-5 flex flex-col gap-3 bg-[#050508]/95 backdrop-blur-xl text-center"
         >
           {links.map(({ label, href }) => (
             <a
               key={label}
               href={href}
               onClick={() => setOpen(false)}
-              className="text-slate-200 hover:text-white transition-colors py-2 text-base rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+              className="text-slate-200 hover:text-white transition-colors py-2 text-sm tracking-[0.08em] uppercase rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
             >
               {label}
             </a>
           ))}
           <a
-            href="mailto:jadalhassan.ja034@gmail.com"
-            className="w-full sm:w-fit text-center px-4 py-3 bg-violet-600 text-white text-sm font-semibold rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+            href="/JadAlHassanCV.pdf"
+            download
+            className="w-full sm:w-fit self-center text-center px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
+          >
+            Resume
+          </a>
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="w-full sm:w-fit self-center text-center px-5 py-3 bg-white/5 border border-white/10 text-slate-200 text-sm font-semibold rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508]"
           >
             Contact Me
           </a>
