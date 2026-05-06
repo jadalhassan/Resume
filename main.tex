@@ -1,0 +1,167 @@
+%-------------------------
+% Resume in Latex
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.1in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+
+\newcommand{\resumeSubheading}[4]{
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+  \end{tabular*}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\LARGE \textbf{Jad Al Hassan}} \\[4pt]
+    Beirut, Lebanon \\[6pt]
+    \small
+    +961 81 665 911 \;---\;
+    \href{mailto:jadalhassan.ja034@gmail.com}{jadalhassan.ja034@gmail.com} \;---\;
+    \href{https://www.linkedin.com/in/jad-alhassan-377061339/}{LinkedIn} \;---\;
+    \href{https://github.com/jadalhassan}{GitHub} \;---\;
+    \href{https://jadalhassan.github.io/Resume/\#main-content}{Portfolio}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Lebanese American University (LAU)}{Expected Graduation: Spring 2027}
+    {Bachelor of Science in Computer Science}{Aug. 2024 -- Present}
+    \resumeItemListStart
+      \resumeItem{\textbf{Relevant Coursework:} Data Structures \& Algorithms, Database Management Systems, Operating Systems, Software Engineering, Web Development, Computer Networks}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {IT Support Intern}{Summer 2025}
+    {Al Zahra Hospital}{Beirut}
+    \resumeItemListStart
+      \resumeItem{Provided technical support for staff, troubleshooting hardware and software issues in a fast-paced environment}
+      \resumeItem{Maintained computer systems, printers, and network infrastructure ensuring minimal downtime}
+      \resumeItem{Resolved system issues efficiently, improving operational reliability in a critical healthcare setting}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {Course Management System}{}
+    \resumeItemListStart
+      \resumeItem{Developed a responsive, mobile-first user interface using React and Tailwind CSS with a structured component-based architecture}
+      \resumeItem{Built dynamic pages for course browsing, enrollment, and management with client-side routing and state handling}
+      \resumeItem{Integrated frontend with a Node.js and Express.js backend using RESTful APIs and MongoDB for persistent data}
+      \resumeItem{Implemented authentication flows with JWT and protected routes, with backend deployed on Render}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Sports Goods Store Management System}{}
+    \resumeItemListStart
+      \resumeItem{Designed a web-based system for managing product listings, orders, and inventory workflows}
+      \resumeItem{Defined system requirements using IEEE SRS standards and modeled workflows with UML diagrams}
+      \resumeItem{Applied MVC and client-server architecture principles for scalable system design}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {Esports Performance Tracker (Database Project)}{}
+    \resumeItemListStart
+      \resumeItem{Designed a relational database using ER modeling and normalization techniques}
+      \resumeItem{Developed complex SQL queries with joins, aggregation, and subqueries}
+      \resumeItem{Implemented triggers and views to automate performance analytics}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+\small{
+  \item{
+    \textbf{Languages}{: Java, Python, SQL, JavaScript, TypeScript, HTML, CSS} \\
+    \textbf{Frameworks \& Tools}{: React, Node.js, Express.js, Tailwind CSS, MongoDB} \\
+    \textbf{Core Concepts}{: Object-Oriented Programming, REST APIs, Authentication, Debugging, Data Structures}
+  }
+}
+\end{itemize}
+
+%-----------EXTRACURRICULAR-----------
+\section{Extracurricular Activities}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {President}{Fall 2025 -- Spring 2026}
+    {LAU Chess Club}{}
+
+  \resumeSubheading
+    {Treasurer}{Fall 2025 -- Spring 2026}
+    {LAU Football Fans Club}{}
+
+  \resumeSubheading
+    {Member}{Fall 2024 -- Present}
+    {Computer Science Club}{}
+
+\resumeSubHeadingListEnd
+
+\end{document}
