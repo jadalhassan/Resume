@@ -1,6 +1,8 @@
+import { useRef, useEffect, useState } from 'react'
 import { SectionHeading } from './About'
 import { ChevronRightIcon, GithubMarkIcon, SparkleIcon } from './Icons'
 import { trackEvent } from '../lib/analytics'
+import mazeGif from '../assets/demo.gif'
 
 function formatHost(url) {
   if (!url) return 'local-preview'
@@ -9,6 +11,146 @@ function formatHost(url) {
   } catch {
     return 'live-preview'
   }
+}
+
+const IFRAME_W = 1200
+
+function ProjectPreview({ url, title, forceDark = false }) {
+  const containerRef = useRef(null)
+  const [scale, setScale] = useState(0.37)
+  const [iframeH, setIframeH] = useState(703)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const update = () => {
+      const { width, height } = el.getBoundingClientRect()
+      if (!width || !height) return
+      const s = width / IFRAME_W
+      setScale(s)
+      setIframeH(height / s)
+    }
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    update()
+    return () => ro.disconnect()
+  }, [])
+
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block relative flex-1 min-h-[210px] overflow-hidden group/preview"
+      onClick={() => trackEvent('project_live_demo_click', { project: title, source: 'iframe_preview' })}
+    >
+      <div ref={containerRef} className="absolute inset-0">
+        <iframe
+          src={url}
+          title={`${title} live preview`}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: `${IFRAME_W}px`,
+            height: `${iframeH}px`,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+            border: 'none',
+            pointerEvents: 'none',
+            colorScheme: forceDark ? 'dark' : undefined,
+          }}
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-forms"
+        />
+      </div>
+      <div className="absolute inset-0 bg-black/0 group-hover/preview:bg-black/50 transition-colors duration-200 flex items-center justify-center">
+        <span className="opacity-0 group-hover/preview:opacity-100 transition-opacity duration-200 px-3 py-1.5 text-xs font-semibold bg-cyan-500 text-slate-950 rounded-md">
+          Open Live Demo
+        </span>
+      </div>
+    </a>
+  )
+}
+
+const PROXY_POOL = [
+  { tag: 'GET',     url: 'http://example.com/index.html',        ms: 142,  type: 'hit'    },
+  { tag: 'CONNECT', url: 'api.github.com:443',                   ms: 23,   type: 'tunnel' },
+  { tag: 'GET',     url: 'http://cdn.jquery.com/jquery.min.js',  ms: 312,  type: 'miss'   },
+  { tag: 'BLOCK',   url: 'http://malicious-ads.net/',            ms: 0,    type: 'block'  },
+  { tag: 'GET',     url: 'http://news.ycombinator.com/',         ms: 89,   type: 'hit'    },
+  { tag: 'CONNECT', url: 'www.google.com:443',                   ms: 18,   type: 'tunnel' },
+  { tag: 'GET',     url: 'http://example.com/style.css',         ms: 56,   type: 'hit'    },
+  { tag: 'BLOCK',   url: 'http://doubleclick.net/ads',           ms: 0,    type: 'block'  },
+  { tag: 'GET',     url: 'http://httpbin.org/get',               ms: 287,  type: 'miss'   },
+  { tag: 'CONNECT', url: 'github.com:443',                       ms: 31,   type: 'tunnel' },
+  { tag: 'GET',     url: 'http://old-api.example.com/data',      ms: 44,   type: 'hit'    },
+  { tag: 'BLOCK',   url: 'http://tracker.spy.com/pixel.gif',    ms: 0,    type: 'block'  },
+]
+const DELAYS = [380, 550, 300, 420, 480, 250, 360, 500, 280, 600, 420, 340]
+const TAG_COLOR = { GET: 'text-cyan-400', CONNECT: 'text-violet-400', BLOCK: 'text-rose-400' }
+const BADGE = {
+  hit:    { label: 'HIT',  cls: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' },
+  miss:   { label: 'MISS', cls: 'text-amber-400   border-amber-500/30   bg-amber-500/10'   },
+  tunnel: { label: 'TUN',  cls: 'text-violet-400  border-violet-500/30  bg-violet-500/10'  },
+  block:  { label: 'BAN',  cls: 'text-rose-400    border-rose-500/30    bg-rose-500/10'    },
+}
+
+function NetworksDemo() {
+  const [lines, setLines]   = useState([])
+  const [stats, setStats]   = useState({ total: 0, hits: 0, blocked: 0 })
+  const idxRef              = useRef(0)
+
+  useEffect(() => {
+    let timer
+    function tick() {
+      const i   = idxRef.current % PROXY_POOL.length
+      const log = PROXY_POOL[i]
+      idxRef.current++
+      const entry = { ...log, time: new Date().toLocaleTimeString('en-US', { hour12: false }), key: idxRef.current }
+      setLines(prev => [...prev.slice(-6), entry])
+      setStats(prev => ({
+        total:   prev.total + 1,
+        hits:    prev.hits    + (log.type === 'hit'   ? 1 : 0),
+        blocked: prev.blocked + (log.type === 'block' ? 1 : 0),
+      }))
+      timer = setTimeout(tick, DELAYS[i])
+    }
+    timer = setTimeout(tick, 300)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <div className="flex-1 min-h-[210px] bg-[#060a12] font-mono text-[11px] flex flex-col overflow-hidden">
+      <div className="flex items-center gap-3 px-4 py-2 border-b border-white/5 bg-[#080d1a] shrink-0">
+        <span className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE
+        </span>
+        <span className="text-slate-600 text-[10px]">0.0.0.0:8080</span>
+        <div className="ml-auto flex items-center gap-3 text-[10px]">
+          <span className="text-slate-500">REQ <span className="text-white font-bold">{stats.total}</span></span>
+          <span className="text-emerald-500">HIT <span className="text-white font-bold">{stats.hits}</span></span>
+          <span className="text-rose-500">BLK <span className="text-white font-bold">{stats.blocked}</span></span>
+        </div>
+      </div>
+      <div className="flex-1 px-4 py-2.5 flex flex-col justify-end gap-1.5 overflow-hidden">
+        {lines.map((line, i) => {
+          const badge = BADGE[line.type]
+          return (
+            <div key={line.key} className={`flex items-center gap-2 leading-none ${i === lines.length - 1 ? 'animate-[fadeIn_0.2s_ease_forwards]' : ''}`}>
+              <span className="text-slate-600 shrink-0">{line.time}</span>
+              <span className={`shrink-0 font-bold w-[52px] ${TAG_COLOR[line.tag]}`}>{line.tag}</span>
+              <span className="text-slate-300 truncate flex-1 min-w-0">{line.url}</span>
+              {line.ms > 0 && <span className="shrink-0 text-slate-600">{line.ms}ms</span>}
+              <span className={`shrink-0 text-[9px] px-1.5 py-0.5 rounded border font-bold ${badge.cls}`}>{badge.label}</span>
+            </div>
+          )
+        })}
+        <span className="text-violet-400 animate-pulse leading-none mt-0.5">▋</span>
+      </div>
+    </div>
+  )
 }
 
 const projects = [
@@ -25,6 +167,7 @@ const projects = [
     tech: ['React', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'JWT'],
     liveUrl: 'https://khaliya-3a-allah.github.io/course-management-system/',
     codeUrl: 'https://github.com/Khaliya-3a-Allah/course-management-system',
+    forceDark: true,
   },
   {
     title: 'Sports Goods Store Management System',
@@ -50,6 +193,7 @@ const projects = [
     ],
     tech: ['Computer Networks', 'Sockets', 'Proxy Server', 'Client-Server'],
     codeUrl: 'https://github.com/jadalhassan/Networks-Proxy-Server',
+    networkDemo: true,
   },
   {
     title: 'Esports Performance Tracker',
@@ -75,6 +219,7 @@ const projects = [
     ],
     tech: ['Python', 'Turtle', 'A* Pathfinding', 'Pandas', 'CSV Analytics'],
     codeUrl: 'https://github.com/jadalhassan/Maze-Game',
+    demoGif: mazeGif,
   },
 ]
 
@@ -97,38 +242,32 @@ export default function Projects() {
             >
               <div className={project.hideDemo ? '' : 'grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]'}>
                 {!project.hideDemo && (
-                  <div className="rounded-xl overflow-hidden border border-white/10 bg-[#0b0f1a]">
-                    <div className="h-11 px-3 flex items-center gap-2 border-b border-white/10 bg-[#0a0d16]">
+                  <div className="rounded-xl overflow-hidden border border-white/10 bg-[#0b0f1a] flex flex-col">
+                    <div className="h-11 shrink-0 px-3 flex items-center gap-2 border-b border-white/10 bg-[#0a0d16]">
                       <span className="w-2.5 h-2.5 rounded-full bg-rose-400/90" />
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-400/90" />
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/90" />
                       <span className="ml-2 text-[11px] text-slate-500 font-mono truncate">{formatHost(project.liveUrl || project.codeUrl)}</span>
                     </div>
-                    <div className="relative min-h-[210px] sm:min-h-[260px] p-5 bg-gradient-to-br from-violet-600/20 via-fuchsia-500/10 to-cyan-400/20">
-                      <div className="absolute inset-0 opacity-40 pointer-events-none" style={{ backgroundImage: 'radial-gradient(rgba(148,163,184,0.2) 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
-                      <div className="relative h-full rounded-lg border border-white/15 bg-black/30 p-4 flex flex-col justify-between">
-                        <div>
-                          <p className="text-[11px] uppercase tracking-[0.12em] text-cyan-200/80">Mini Demo</p>
-                          <p className="mt-2 text-white font-semibold leading-snug">{project.title}</p>
-                          <p className="mt-2 text-xs text-slate-300">{project.context}</p>
-                        </div>
-                        {project.liveUrl ? (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => trackEvent('project_live_demo_click', { project: project.title, source: 'mini_preview' })}
-                            className="inline-flex w-fit items-center gap-2 px-3 py-1.5 text-xs font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-md transition-colors"
-                          >
-                            Open Preview
-                          </a>
-                        ) : (
-                          <span className="inline-flex w-fit items-center gap-2 px-3 py-1.5 text-xs font-semibold bg-white/10 border border-white/15 text-slate-200 rounded-md">
-                            Demo Not Available
-                          </span>
-                        )}
+                    {project.liveUrl ? (
+                      <ProjectPreview url={project.liveUrl} title={project.title} forceDark={project.forceDark} />
+                    ) : project.networkDemo ? (
+                      <NetworksDemo />
+                    ) : project.demoGif ? (
+                      <div className="flex-1 min-h-[210px] overflow-hidden">
+                        <img
+                          src={project.demoGif}
+                          alt={`${project.title} demo`}
+                          className="w-full h-full object-cover object-top"
+                        />
                       </div>
-                    </div>
+                    ) : (
+                      <div className="relative flex-1 min-h-[210px] p-5 bg-gradient-to-br from-violet-600/20 via-fuchsia-500/10 to-cyan-400/20 flex items-center justify-center">
+                        <span className="inline-flex w-fit items-center gap-2 px-3 py-1.5 text-xs font-semibold bg-white/10 border border-white/15 text-slate-200 rounded-md">
+                          Demo Not Available
+                        </span>
+                      </div>
+                    )}
                   </div>
                 )}
 
