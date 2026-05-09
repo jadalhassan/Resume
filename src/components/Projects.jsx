@@ -96,6 +96,91 @@ const BADGE = {
   block:  { label: 'BAN',  cls: 'text-rose-400    border-rose-500/30    bg-rose-500/10'    },
 }
 
+// ── DBMS Demo ────────────────────────────────────────────────────────────────
+const SQL_SEQUENCE = [
+  { type: 'query', text: 'SELECT team_name, wins, losses FROM TeamWinLoss ORDER BY wins DESC LIMIT 4;' },
+  { type: 'row',   cols: ['FaZe Clan',    '24', '6'],  widths: ['flex-1','w-8','w-8'], colors: ['text-white','text-emerald-400','text-rose-400'] },
+  { type: 'row',   cols: ['Team Liquid',  '21', '9'],  widths: ['flex-1','w-8','w-8'], colors: ['text-white','text-emerald-400','text-rose-400'] },
+  { type: 'row',   cols: ['Cloud9',       '18', '12'], widths: ['flex-1','w-8','w-8'], colors: ['text-white','text-emerald-400','text-rose-400'] },
+  { type: 'row',   cols: ['NaVi',         '17', '13'], widths: ['flex-1','w-8','w-8'], colors: ['text-white','text-emerald-400','text-rose-400'] },
+  { type: 'ok',    text: '4 rows in set (0.003 sec)' },
+  { type: 'gap' },
+  { type: 'query', text: 'SELECT alias, PlayerKDA(player_id) AS kda FROM Player ORDER BY kda DESC LIMIT 3;' },
+  { type: 'row',   cols: ['s1mple',  '4.82'], widths: ['flex-1','w-16'], colors: ['text-white','text-cyan-400'] },
+  { type: 'row',   cols: ['ZywOo',   '4.31'], widths: ['flex-1','w-16'], colors: ['text-white','text-cyan-400'] },
+  { type: 'row',   cols: ['device',  '3.97'], widths: ['flex-1','w-16'], colors: ['text-white','text-cyan-400'] },
+  { type: 'ok',    text: '3 rows in set (0.008 sec)' },
+  { type: 'gap' },
+  { type: 'query', text: "INSERT INTO PlayerMatchStats (player_id, match_id, kills, deaths, assists) VALUES (203, 88, 22, 4, 9);" },
+  { type: 'trigger', text: '[TRIGGER] player #203 status: New → Active' },
+  { type: 'ok',    text: '1 row affected (0.011 sec)' },
+]
+const SQL_DELAYS = [600,220,220,220,220,400,300,600,220,220,220,400,300,600,500,400]
+
+function DBMSDemo() {
+  const [items, setItems] = useState([])
+  const idxRef = useRef(0)
+
+  useEffect(() => {
+    let timer
+    function tick() {
+      const i = idxRef.current
+      if (i >= SQL_SEQUENCE.length) {
+        timer = setTimeout(() => { idxRef.current = 0; setItems([]); tick() }, 2200)
+        return
+      }
+      idxRef.current++
+      setItems(prev => [...prev, { ...SQL_SEQUENCE[i], key: i }])
+      timer = setTimeout(tick, SQL_DELAYS[i] ?? 300)
+    }
+    timer = setTimeout(tick, 400)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <div className="flex-1 min-h-[210px] bg-[#060a12] font-mono text-[11px] flex flex-col overflow-hidden">
+      <div className="flex items-center gap-3 px-4 py-2 border-b border-white/5 bg-[#080d1a] shrink-0">
+        <span className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE
+        </span>
+        <span className="text-slate-600 text-[10px]">esports_db</span>
+        <div className="ml-auto flex items-center gap-3 text-[10px] text-slate-500">
+          <span>TABLES <span className="text-white font-bold">15</span></span>
+          <span>VIEWS <span className="text-white font-bold">1</span></span>
+          <span>TRIGGERS <span className="text-white font-bold">2</span></span>
+        </div>
+      </div>
+      <div className="flex-1 px-4 py-3 flex flex-col gap-1 overflow-hidden">
+        {items.map((item) => {
+          if (item.type === 'gap') return <div key={item.key} className="h-1" />
+          if (item.type === 'query') return (
+            <div key={item.key} className="flex gap-2 animate-[fadeIn_0.15s_ease_forwards]">
+              <span className="text-violet-400 shrink-0">›</span>
+              <span className="text-violet-200 break-all">{item.text}</span>
+            </div>
+          )
+          if (item.type === 'row') return (
+            <div key={item.key} className="flex gap-3 pl-4 animate-[fadeIn_0.15s_ease_forwards]">
+              {item.cols.map((col, ci) => (
+                <span key={ci} className={`${item.widths[ci]} ${item.colors[ci]} truncate`}>{col}</span>
+              ))}
+            </div>
+          )
+          if (item.type === 'trigger') return (
+            <div key={item.key} className="pl-4 text-amber-400 animate-[fadeIn_0.15s_ease_forwards]">{item.text}</div>
+          )
+          if (item.type === 'ok') return (
+            <div key={item.key} className="pl-4 text-slate-600 animate-[fadeIn_0.15s_ease_forwards]">{item.text}</div>
+          )
+          return null
+        })}
+        <span className="text-violet-400 animate-pulse mt-0.5">▋</span>
+      </div>
+    </div>
+  )
+}
+
 const PREFILL = 10
 
 function NetworksDemo() {
@@ -213,7 +298,8 @@ const projects = [
     title: 'Esports Performance Tracker',
     context: 'Database Systems Project',
     period: '2025',
-    hideDemo: true,
+    dbmsDemo: true,
+    addressBar: 'esports_db — MySQL 8.0',
     highlights: [
       'Designed a relational schema with ER modeling and normalization best practices',
       'Created analytical SQL queries using joins, aggregations, and nested subqueries',
@@ -255,7 +341,7 @@ export default function Projects() {
                   : 'border-white/10 hover:border-violet-500/25 hover:shadow-violet-500/5'
               }`}
             >
-              <div className={project.hideDemo ? '' : 'grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]'}>
+              <div className={(!project.hideDemo) ? 'grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]' : ''}>
                 {!project.hideDemo && (
                   <div className="rounded-xl overflow-hidden border border-white/10 bg-[#0b0f1a] flex flex-col">
                     <div className="h-11 shrink-0 px-3 flex items-center gap-2 border-b border-white/10 bg-[#0a0d16]">
@@ -266,6 +352,13 @@ export default function Projects() {
                     </div>
                     {project.liveUrl ? (
                       <ProjectPreview url={project.liveUrl} title={project.title} forceDark={project.forceDark} />
+                    ) : project.dbmsDemo ? (
+                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 flex flex-col relative group/demo">
+                        <DBMSDemo />
+                        <div className="absolute inset-0 bg-black/0 group-hover/demo:bg-black/50 transition-colors duration-200 flex items-center justify-center pointer-events-none">
+                          <span className="opacity-0 group-hover/demo:opacity-100 transition-opacity duration-200 px-3 py-1.5 text-xs font-semibold bg-white/10 border border-white/20 text-white rounded-md backdrop-blur-sm">View on GitHub</span>
+                        </div>
+                      </a>
                     ) : project.networkDemo ? (
                       <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 flex flex-col relative group/demo">
                         <NetworksDemo />
