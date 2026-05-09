@@ -96,10 +96,23 @@ const BADGE = {
   block:  { label: 'BAN',  cls: 'text-rose-400    border-rose-500/30    bg-rose-500/10'    },
 }
 
+const PREFILL = 10
+
 function NetworksDemo() {
-  const [lines, setLines]   = useState([])
-  const [stats, setStats]   = useState({ total: 0, hits: 0, blocked: 0 })
-  const idxRef              = useRef(0)
+  const [lines, setLines] = useState(() => {
+    const now = Date.now()
+    return PROXY_POOL.slice(0, PREFILL).map((log, i) => ({
+      ...log,
+      time: new Date(now - (PREFILL - i) * 480).toLocaleTimeString('en-US', { hour12: false }),
+      key: i - 1000,
+    }))
+  })
+  const [stats, setStats] = useState(() => ({
+    total:   PREFILL,
+    hits:    PROXY_POOL.slice(0, PREFILL).filter(l => l.type === 'hit').length,
+    blocked: PROXY_POOL.slice(0, PREFILL).filter(l => l.type === 'block').length,
+  }))
+  const idxRef = useRef(PREFILL)
 
   useEffect(() => {
     let timer
@@ -108,7 +121,7 @@ function NetworksDemo() {
       const log = PROXY_POOL[i]
       idxRef.current++
       const entry = { ...log, time: new Date().toLocaleTimeString('en-US', { hour12: false }), key: idxRef.current }
-      setLines(prev => [...prev.slice(-6), entry])
+      setLines(prev => [...prev.slice(-PREFILL), entry])
       setStats(prev => ({
         total:   prev.total + 1,
         hits:    prev.hits    + (log.type === 'hit'   ? 1 : 0),
@@ -134,7 +147,7 @@ function NetworksDemo() {
           <span className="text-rose-500">BLK <span className="text-white font-bold">{stats.blocked}</span></span>
         </div>
       </div>
-      <div className="flex-1 px-4 py-2.5 flex flex-col justify-end gap-1.5 overflow-hidden">
+      <div className="flex-1 px-4 py-2.5 flex flex-col gap-1.5 overflow-hidden">
         {lines.map((line, i) => {
           const badge = BADGE[line.type]
           return (
