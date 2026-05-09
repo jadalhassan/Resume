@@ -207,6 +207,7 @@ const projects = [
     tech: ['Computer Networks', 'Sockets', 'Proxy Server', 'Client-Server'],
     codeUrl: 'https://github.com/jadalhassan/Networks-Proxy-Server',
     networkDemo: true,
+    addressBar: 'proxy.py — 0.0.0.0:8080',
   },
   {
     title: 'Esports Performance Tracker',
@@ -233,6 +234,7 @@ const projects = [
     tech: ['Python', 'Turtle', 'A* Pathfinding', 'Pandas', 'CSV Analytics'],
     codeUrl: 'https://github.com/jadalhassan/Maze-Game',
     demoGif: mazeGif,
+    addressBar: 'maze_game.py — Python Turtle',
   },
 ]
 
@@ -260,20 +262,22 @@ export default function Projects() {
                       <span className="w-2.5 h-2.5 rounded-full bg-rose-400/90" />
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-400/90" />
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/90" />
-                      <span className="ml-2 text-[11px] text-slate-500 font-mono truncate">{formatHost(project.liveUrl || project.codeUrl)}</span>
+                      <span className="ml-2 text-[11px] text-slate-500 font-mono truncate">{project.addressBar || formatHost(project.liveUrl || project.codeUrl)}</span>
                     </div>
                     {project.liveUrl ? (
                       <ProjectPreview url={project.liveUrl} title={project.title} forceDark={project.forceDark} />
                     ) : project.networkDemo ? (
-                      <NetworksDemo />
+                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 flex flex-col">
+                        <NetworksDemo />
+                      </a>
                     ) : project.demoGif ? (
-                      <div className="flex-1 min-h-[210px] overflow-hidden">
+                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 min-h-[210px] overflow-hidden block">
                         <img
                           src={project.demoGif}
                           alt={`${project.title} demo`}
                           className="w-full h-full object-cover object-top"
                         />
-                      </div>
+                      </a>
                     ) : (
                       <div className="relative flex-1 min-h-[210px] p-5 bg-gradient-to-br from-violet-600/20 via-fuchsia-500/10 to-cyan-400/20 flex items-center justify-center">
                         <span className="inline-flex w-fit items-center gap-2 px-3 py-1.5 text-xs font-semibold bg-white/10 border border-white/15 text-slate-200 rounded-md">
