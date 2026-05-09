@@ -9,6 +9,13 @@ const TIMEOUT_MS = 10000
 const SKIP_PATTERNS = [
   'www.w3.org/2000/svg',
   'www.sitemaps.org/schemas/sitemap/0.9',
+  // Intentionally fake URLs used in the Networks proxy demo terminal
+  'example.com',
+  'cdn.jquery.com',
+  'malicious-ads.net',
+  'doubleclick.net/ads',
+  'old-api.example.com',
+  'tracker.spy.com',
 ]
 
 function listFiles(dir) {
