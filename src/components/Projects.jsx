@@ -138,7 +138,7 @@ function DBMSDemo() {
   }, [])
 
   return (
-    <div className="flex-1 min-h-[210px] bg-[#060a12] font-mono text-[11px] flex flex-col overflow-hidden">
+    <div className="absolute inset-0 bg-[#060a12] font-mono text-[11px] flex flex-col overflow-hidden">
       <div className="flex items-center gap-3 px-4 py-2 border-b border-white/5 bg-[#080d1a] shrink-0">
         <span className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -151,7 +151,7 @@ function DBMSDemo() {
           <span>TRIGGERS <span className="text-white font-bold">2</span></span>
         </div>
       </div>
-      <div className="flex-1 px-4 py-3 flex flex-col gap-1 overflow-hidden">
+      <div className="flex-1 min-h-0 px-4 py-3 flex flex-col justify-end gap-1 overflow-hidden">
         {items.map((item) => {
           if (item.type === 'gap') return <div key={item.key} className="h-1" />
           if (item.type === 'query') return (
@@ -219,7 +219,7 @@ function NetworksDemo() {
   }, [])
 
   return (
-    <div className="flex-1 min-h-[210px] bg-[#060a12] font-mono text-[11px] flex flex-col overflow-hidden">
+    <div className="absolute inset-0 bg-[#060a12] font-mono text-[11px] flex flex-col overflow-hidden">
       <div className="flex items-center gap-3 px-4 py-2 border-b border-white/5 bg-[#080d1a] shrink-0">
         <span className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -232,7 +232,7 @@ function NetworksDemo() {
           <span className="text-rose-500">BLK <span className="text-white font-bold">{stats.blocked}</span></span>
         </div>
       </div>
-      <div className="flex-1 px-4 py-2.5 flex flex-col gap-1.5 overflow-hidden">
+      <div className="flex-1 min-h-0 px-4 py-2.5 flex flex-col gap-1.5 overflow-hidden">
         {lines.map((line, i) => {
           const badge = BADGE[line.type]
           return (
@@ -290,6 +290,7 @@ const projects = [
       'Strengthened debugging and traffic analysis skills through practical networking scenarios',
     ],
     tech: ['Computer Networks', 'Sockets', 'Proxy Server', 'Client-Server'],
+    liveUrl: 'https://jadalhassan.github.io/Networks-Proxy-Server/#',
     codeUrl: 'https://github.com/jadalhassan/Networks-Proxy-Server',
     networkDemo: true,
     addressBar: 'proxy.py — 0.0.0.0:8080',
@@ -343,7 +344,7 @@ export default function Projects() {
             >
               <div className={(!project.hideDemo) ? 'grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]' : ''}>
                 {!project.hideDemo && (
-                  <div className="rounded-xl overflow-hidden border border-white/10 bg-[#0b0f1a] flex flex-col">
+                  <div className={`rounded-xl overflow-hidden border border-white/10 bg-[#0b0f1a] flex flex-col${project.networkDemo || project.dbmsDemo ? ' h-[280px]' : ''}`}>
                     <div className="h-11 shrink-0 px-3 flex items-center gap-2 border-b border-white/10 bg-[#0a0d16]">
                       <span className="w-2.5 h-2.5 rounded-full bg-rose-400/90" />
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-400/90" />
@@ -353,14 +354,14 @@ export default function Projects() {
                     {project.liveUrl ? (
                       <ProjectPreview url={project.liveUrl} title={project.title} forceDark={project.forceDark} />
                     ) : project.dbmsDemo ? (
-                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 flex flex-col relative group/demo">
+                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 relative group/demo min-h-[210px]">
                         <DBMSDemo />
                         <div className="absolute inset-0 bg-black/0 group-hover/demo:bg-black/50 transition-colors duration-200 flex items-center justify-center pointer-events-none">
                           <span className="opacity-0 group-hover/demo:opacity-100 transition-opacity duration-200 px-3 py-1.5 text-xs font-semibold bg-white/10 border border-white/20 text-white rounded-md backdrop-blur-sm">View on GitHub</span>
                         </div>
                       </a>
                     ) : project.networkDemo ? (
-                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 flex flex-col relative group/demo">
+                      <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('project_github_click', { project: project.title, source: 'demo_panel' })} className="flex-1 relative group/demo min-h-[210px]">
                         <NetworksDemo />
                         <div className="absolute inset-0 bg-black/0 group-hover/demo:bg-black/50 transition-colors duration-200 flex items-center justify-center pointer-events-none">
                           <span className="opacity-0 group-hover/demo:opacity-100 transition-opacity duration-200 px-3 py-1.5 text-xs font-semibold bg-white/10 border border-white/20 text-white rounded-md backdrop-blur-sm">View on GitHub</span>
